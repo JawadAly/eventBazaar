@@ -1,0 +1,235 @@
+/* font families import */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+section{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  margin-top: 90px;
+}
+/* infoBar css */
+.informationBar{
+  width: 100%;
+  height: 30px;
+  background-color: #ffffff;
+  border-bottom: 1px solid lightgray;
+}
+.topBarSocials .list{
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+.topBarSocials > .list li{
+ margin-right: 30px; 
+}
+.topBarSocials > .list li a{
+  color: black;
+}
+/* navbar css */
+.navbar{
+  width: 100%;
+  height: 90px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  transition: top 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Smooth transition */
+}
+.navLogo{
+  width: 80px;
+  height: 80px;
+}
+.navLogo a{
+  text-decoration: none;
+  cursor: pointer;
+  color: #454545;
+}
+.navUl li{
+  margin-right: 44px;
+  list-style-type: none;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.navUl li a{
+  text-decoration: none;
+  color: #454545;
+  cursor: pointer;
+}
+.navSideBarBtn{
+  width: 35px;
+  height: 35px;
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  z-index: 1100;
+}
+.upperLine,
+.middleLine,
+.lowerLine{
+  width: 25px;
+  height: 2px;
+  background-color: #454545;
+  border-radius: 20px;
+  margin-bottom: 4px;
+}
+.stickyNav{
+  top: 0;
+}
+.officialTextColor{
+  color: #bc2649;
+}
+/* footer css */
+.footerSection{
+  min-height: 50vh;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  margin-top: 0px;
+}
+.footerLowerBar{
+  width: 100%;
+  /* min-height: 35px; */
+  background-color: #bc2649;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.middleContent ul{
+  list-style-type: none;
+}
+.middleContent ul li{
+  margin-bottom: 10px;
+}
+.middleContent ul li a{
+  text-decoration: none;
+  color: black;
+}
+.brandSocials ul{
+  list-style-type: none;
+  display: flex;
+}
+.brandSocials ul li{
+  margin-right: 30px;
+}
+/* preloader css */
+.preloader{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.columnLayout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.preLoaderNavLogo{
+  width: 150px;
+  height: 150px;
+}
+/* login section css */
+.loginCard{
+  width: 400px;
+  height: 460px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  overflow: hidden;
+  max-height: 100vh; 
+}
+.flexer{
+  width: 100%;
+  min-height: 100vh;
+}
+.circle{
+  width: 100%;
+  height: 80%;
+  background-color: #bc2649;
+  border-radius: 50%;
+  position: relative;
+  top: -45%;
+  left: 0;
+  right: 0;
+}
+.circleText{
+  position: absolute;
+  top: 76%;
+  left: 26%;
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 37px;
+}
+.formSection{
+  position: absolute;
+  width: 100%;
+  top: 38%;
+}
+/* media queries */
+@media only screen and (max-width:768px){
+  .informationBar{
+    display: none;
+  }
+  .navbar{
+    top: 0;
+  }
+  .sideBar{
+    position: fixed;
+    top: 0;
+    transform: translateX(320px) !important;
+    right: 0;
+    bottom: 0;
+    width: 320px;
+    background-color: bisque;
+    z-index: 1000;
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition-duration: 1s;
+    
+}
+.navUl{
+    flex-direction: column;
+    margin-top: 27%;
+}
+.navUl li{
+    margin-bottom: 80px;
+    margin-left: 10px;
+    border-bottom: 1px solid grey;
+}
+.navSideBarBtn{
+    display: block !important;
+    top: 38px;
+    right: 20px;
+}
+.checkBoxSider:checked ~ .sideBar{
+    transform: translateX(0px) !important;
+}
+.footerFlexer{
+  flex-direction: column;
+  margin-bottom: 80px;
+}
+.middleContent ul{
+  padding: 0px 28px 0px 0px;
+}
+.brandSocials ul{
+  padding-left: 0px;
+}
+}
