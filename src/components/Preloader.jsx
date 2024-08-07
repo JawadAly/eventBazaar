@@ -33,8 +33,7 @@ const Preloader = () => {
                         <img src='/images/eventBazarLogo.png' alt='brandLogo' className='img-fluid'/>
                     </a>
                 </div>
-            <CircularProgress color="error"/>
-            
+            <CircularProgress color="warning"/>
           </div>
         </Backdrop>
       </div>

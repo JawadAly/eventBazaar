@@ -104,6 +104,10 @@ section{
   left: 0;
   right: 0;
 }
+.footerLogo{
+  width: 120px;
+  height: 120px; 
+}
 .middleContent ul{
   list-style-type: none;
 }
@@ -129,7 +133,7 @@ section{
   top: 0;
   left: 0;
   right: 0;
-  background-color: transparent;
+  background-color: #bc2649;
   z-index: 1500;
   display: flex;
   align-items: center;

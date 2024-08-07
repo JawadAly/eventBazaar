@@ -9,7 +9,7 @@ const Footer = () => {
       <section className="footerSection p-3">
         <div className="container">
           <div className="footerFlexer d-flex  justify-content-between">
-            <div className="navLogo">
+            <div className="footerLogo">
                 <a href="#">
                   <img 
                   src="/images/eventBazarLogo.png" 
