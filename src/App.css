@@ -1,9 +1,14 @@
 /* font families import */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 section{
   width: 100%;
@@ -188,7 +193,110 @@ section{
   width: 100%;
   top: 38%;
 }
+/* carousel css */
+.myCarousel{
+  position: relative;
+}
+.slider-img{
+  max-height: 90vh;
+  object-position: center center;
+}
+.carouselTint{
+  width: 100%;
+  height: 90vh;
+  background-color: #454545;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+.carousel-control-next,
+.carousel-control-prev{
+  z-index: 1200;
+}
+.tintText{
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ffffff;
+  font-size: 80px;
+  padding-left: 150px !important;
+  overflow: hidden; 
+  border-right: 0.1rem solid #000; 
+  white-space: nowrap; 
+  animation: typing 4s steps(40, end) 0s forwards, blink-caret 0.75s step-end infinite 4s;
+  animation-delay: 3s;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: black; }
+}
+
+/* events section css */
+.eventsSecHeading{
+  font-weight: 500; 
+}
+.cardsHolder{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 30px;
+}
+.myCard{
+  width: 100%;
+  height: 170px;
+  /* background-color: #ffffff; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+  background-image: url('/images/event1.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.eventDateTime{
+  width: 105px;
+  height: 50px;
+  background-color: lightslategrey;
+  font-size: small;
+  border-radius: 12px;
+  color: #f5f5f5;
+}
+.locationAndPricingArea{
+  position: absolute;
+  bottom: 3%;
+  left: 5px;
+}
+.locationArea{
+  min-width: 40px;
+  height: 28px;
+  background-color: lightslategrey;
+  font-size: small;
+  border-radius: 12px;
+  color: #f5f5f5;
+}
+.pricingArea{
+  min-width: 40px;
+  height: 28px;
+  background-color: #bc2649;
+  font-size: small;
+  border-radius: 12px;
+  color: #f5f5f5;
+}
 /* media queries */
+@media only screen and (max-width:992px){
+  .carouselTint{
+    display: none !important;
+  }
+}
 @media only screen and (max-width:768px){
   .informationBar{
     display: none;
@@ -203,11 +311,11 @@ section{
     right: 0;
     bottom: 0;
     width: 320px;
-    background-color: bisque;
+    background-color: #bc2649;
     z-index: 1000;
     transition: cubic-bezier(0.165, 0.84, 0.44, 1);
     transition-duration: 1s;
-    
+    opacity: 0.95;
 }
 .navUl{
     flex-direction: column;
@@ -216,7 +324,10 @@ section{
 .navUl li{
     margin-bottom: 80px;
     margin-left: 10px;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #f5f5f5;
+}
+.navUl li a{
+  color :#ffffff;
 }
 .navSideBarBtn{
     display: block !important;
@@ -235,5 +346,11 @@ section{
 }
 .brandSocials ul{
   padding-left: 0px;
+}
+.slider-img{
+  max-height: none;
+}
+.cardsHolder{
+  grid-template-columns: 1fr !important;
 }
 }

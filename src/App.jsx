@@ -7,8 +7,6 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 // custom css import
 import './App.css';
-// custom js import
-import './additionalJs/onApp.js';
 // components import
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -21,8 +19,6 @@ import PrivacyPolicy from './Pages/PrivacyPolicy.jsx';
 import Contact from './Pages/Contact.jsx';
 import About from './Pages/About.jsx';
 import Preloader from './components/Preloader.jsx';
-
-
 
 const App = () =>{
   return(
