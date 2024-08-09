@@ -19,6 +19,7 @@ import PrivacyPolicy from './Pages/PrivacyPolicy.jsx';
 import Contact from './Pages/Contact.jsx';
 import About from './Pages/About.jsx';
 import Preloader from './components/Preloader.jsx';
+import Error from './Pages/Error.jsx';
 
 const App = () =>{
   return(
@@ -33,6 +34,7 @@ const App = () =>{
           <Route exact path='/contact' element={<Contact/>}/>
           <Route exact path='/termsandconds' element={<TermsAndConds/>}/>
           <Route exact path='/privacypolicy' element={<PrivacyPolicy/>}/>
+          <Route path='/*' element={<Error/>}/>
         </Routes>
       <Footer/>
       <Preloader/>
