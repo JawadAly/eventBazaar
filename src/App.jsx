@@ -20,6 +20,7 @@ import Contact from './Pages/Contact.jsx';
 import About from './Pages/About.jsx';
 import Preloader from './components/Preloader.jsx';
 import Error from './Pages/Error.jsx';
+import EventView from './Pages/EventView.jsx';
 
 const App = () =>{
   return(
@@ -32,6 +33,7 @@ const App = () =>{
           <Route exact path='/signup' element={<Signup/>}/>
           <Route exact path='/about' element={<About/>}/>
           <Route exact path='/contact' element={<Contact/>}/>
+          <Route exact path='/events/:eventName' element={<EventView/>}/>
           <Route exact path='/termsandconds' element={<TermsAndConds/>}/>
           <Route exact path='/privacypolicy' element={<PrivacyPolicy/>}/>
           <Route path='/*' element={<Error/>}/>

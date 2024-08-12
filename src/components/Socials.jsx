@@ -6,6 +6,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 export const TwittIcon = (props) =>{
     return <TwitterIcon fontSize={props.font}/>;
@@ -30,4 +31,7 @@ export const TagIcon = (props) =>{
 }
 export const ProfileIcon = (props) =>{
     return <AssignmentIndOutlinedIcon fontSize={props.font}/>;
+}
+export const LocationIcon = (props) =>{
+    return <LocationOnOutlinedIcon fontSize={props.font}/>;
 }

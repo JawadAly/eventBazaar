@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
 import CustomButton from './CustomMUIBtn';
+import Search from './Search';
+
 const Navbar = () =>{
     const [isSticky, setIsSticky] = useState(false);
 
@@ -40,7 +42,10 @@ const Navbar = () =>{
                     <div className="lowerLine"></div>
                 </label>
                 <div className="sideBar pt-2">
-                    <ul className="navUl d-flex">
+                    <ul className="navUl d-flex align-items-center">
+                        <li>
+                            <Search/>
+                        </li>
                         <li>
                             <NavLink to='/'>Home</NavLink>
                         </li>

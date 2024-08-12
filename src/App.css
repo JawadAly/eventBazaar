@@ -249,15 +249,122 @@ section{
   from, to { border-color: transparent; }
   50% { border-color: black; }
 }
+/* categories section css */
+.categHolder{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 50px 30px;
+}
+.myCateg{
+  /* max-width: 120px; */
+  min-width: 120px;
+  min-height: 115px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  position: relative;
+}
+.categName{
+  position: absolute;
+  top: 110%;
+}
+/* featured events section css */
+.featuredCard{
+  max-width: 270px;
+  min-height: 300px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+/* .featuredCard:hover{
+  transform: scale(1.09);
+} */
+.featCardImg{
+  /* border-radius: 8px; */
+  border-radius: 8px 8px 0px 0px;
+  width: 100%;
+  height: 170px;
+}
+.featEventName{
+  font-weight: 600;
+}
+.featEventDateTime{
+  font-size: 14px;
+  font-weight: 500;
+}
+.featEventLocation{
+  font-size: 14px;
+  font-weight: 400;
+}
+.featEventCost{
+  /* background-color: #bc2649;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 12px;
+  min-width: 100px;
+  height: 30px; */
 
+  min-width: 70px;
+  height: 35px;
+  background-color: #bc2649;
+  font-size: small;
+  border-radius: 12px;
+  color: #f5f5f5;
+}
+.slick-slide{
+  padding: 10px;
+}
+/* .slick-slide div{
+  background-color: #454545;
+} */
+.slick-next{
+  right: 0px !important;
+}
+.slick-prev{
+  left: -20px !important;
+}
+.slick-next:before,
+.slick-prev:before{
+  color: #bc2649 !important;
+  
+}
+.featCardAnchor{
+  text-decoration: none;
+  color: #000;
+}
 /* events section css */
+/* common css for headings */
 .eventsSecHeading{
   font-weight: 500; 
+  position: relative;
+}
+.eventsSecHeading::before{
+  content:'';
+  position: absolute;
+  bottom: -5%;
+  width: 50px;
+  height: 2px;
+}
+.eventsSecHeading:nth-of-type(1)::before{
+  left: 11% ;
+  background-color: #bc2649;
+}
+.eventsSecHeading:nth-of-type(2)::before{
+  left: 9%;
+  background-color: #000 ;
+}
+.eventsSecHeading:nth-of-type(3)::before{
+  left: 19% ;
+  background-color: #bc2649;
 }
 .cardsHolder{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 30px;
+  grid-gap: 50px 30px;
 }
 .myCard{
   width: 100%;
@@ -301,6 +408,15 @@ section{
   border-radius: 12px;
   color: #f5f5f5;
 }
+.eventNameHolder{
+  position: absolute;
+  top: 104%;
+  left: 0;
+}
+.eventNameText{
+  font-weight: 500;
+  color: #000;
+}
 /* errorSection css */
 .errorFlexer{
   width: 100%;
@@ -327,10 +443,74 @@ section{
   right: 1%;
   z-index: 1000;
 }
+/* detailedEventView section css */
+.eventViewImgHolder{
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.eventViewImgHolder .bgMimic{
+  /* content: ''; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: url('/images/event1.jpg'); */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(2px);
+  opacity: 0.7;
+  z-index: 1;
+  border-radius: inherit;
+}
+.eventViewImgHolder img{
+  z-index: 2;
+  border-radius: inherit;
+}
+.eventViewNameHeading{
+  font-weight: 800;
+  font-size: 3rem;
+}
+.eventViewDate{
+  color: lightslategray;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.eventViewDateTime{
+  font-weight: 600;
+}
+.eventViewPrice{
+  min-width: 70px;
+  height: 40px;
+  background-color: #bc2649;
+  font-size: large;
+  border-radius: 12px;
+  color: #f5f5f5;
+  animation: heartBeat infinite; 
+  animation-duration: 2s; 
+}
+
 /* media queries */
+.themeColor{
+  color: #bc2649;
+}
+@media (max-width: 1024px) {
+  .categHolder {
+    grid-template-columns: repeat(4, 1fr); 
+    grid-gap: 40px 20px;
+  }
+}
 @media only screen and (max-width:992px){
   .carouselTint{
     display: none !important;
+  }
+  .slick-next{
+    right: -10px !important;
   }
 }
 @media only screen and (max-width:768px){
@@ -355,12 +535,18 @@ section{
 }
 .navUl{
     flex-direction: column;
-    margin-top: 27%;
+    margin-top: 20%;
+    align-items: start !important;
+    padding-left: 1.5rem;
+}
+.navUl li:first-child{
+  border-bottom: none;
 }
 .navUl li{
     margin-bottom: 80px;
     margin-left: 10px;
     border-bottom: 1px solid #f5f5f5;
+    width: 80%;
 }
 .navUl li a{
   color :#ffffff;
@@ -389,4 +575,23 @@ section{
 .cardsHolder{
   grid-template-columns: 1fr !important;
 }
+.slick-next{
+  right: -20px !important;
+}
+.categHolder {
+  grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+  grid-gap: 30px 15px;
+}
+}
+@media only screen and (max-width:576px){
+  .featuredCard{
+    margin-left: 30px;
+  }
+}
+@media (max-width: 480px) {
+  .categHolder {
+    grid-template-columns: repeat(1, 1fr); /* 1 column on extra small screens */
+    grid-gap: 50px 10px;
+  }
+
 }

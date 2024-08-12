@@ -14,7 +14,7 @@ export const events = [
       eventDate: "2024-09-10",
       eventTime: "09:00",
       location: "Silicon Valley, California",
-      price: 200.00,
+      price: 2000000.00,
       backgroundImage: "/images/event2.jpeg"
     },
     {

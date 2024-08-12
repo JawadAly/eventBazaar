@@ -10,6 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { pink } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
 import { NavLink } from 'react-router-dom';
+import { signUp } from '../apis/AuthService';
 
 const Signup = () =>{
     const[registerData,setRegisterData] = useState({
@@ -39,6 +40,16 @@ const Signup = () =>{
             setPasswordMatchState(newPassword !== newConfirmPassword);
         }
     }
+    // signUp Handler to api
+    // const handleSignUp = async (incomingSignUpData) =>{
+    //     try{
+    //         const resp = await signUp(incomingSignUpData);
+    //         alert('SignUp Successful!',resp);
+    //     }
+    //     catch(error){
+    //         alert(`SignUp Error at apihandler at signUp component. Details: ${error}`);
+    //     }
+    // }
     const submitRegisterData = (e) =>{
         e.preventDefault();
         if(registerData.firstName === '' ||
@@ -61,6 +72,7 @@ const Signup = () =>{
                 }
                 else{
                     console.log(registerData);
+                    // handleSignUp(registerData);
                 }
             }
         }

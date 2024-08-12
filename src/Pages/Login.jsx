@@ -4,6 +4,7 @@ import MUITextField from '../components/MUITextField';
 import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import PersonIcon from '@mui/icons-material/Person';
+import { signIn } from '../apis/AuthService';
 
 const Login = () =>{
     const[loginData,setLoginData] = useState({
@@ -21,6 +22,16 @@ const Login = () =>{
         });
         
     }
+    // signIn handelr to api
+    // const signin = async (incomingUsrCredentials) =>{
+    //     try{
+    //         const resp = await signIn(incomingUsrCredentials);
+    //         alert('SignIn successful',resp);
+    //     }
+    //     catch(error){
+    //         alert(`SignIn Error at apihandler at signIn component. Details: ${error}`);
+    //     }
+    // }
     const submitLoginData = (e) =>{
         e.preventDefault();
         if(loginData.userEmail === '' || loginData.userPass === ''){
@@ -28,6 +39,7 @@ const Login = () =>{
         }
         else{
             console.log(loginData.userEmail,loginData.userPass);
+            // signin(loginData);
         }
     }
     return(
