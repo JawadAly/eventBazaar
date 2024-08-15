@@ -6,7 +6,7 @@ export const events = [
       eventTime: "18:00",
       location: "Central Park, New York",
       price: 50.00,
-      backgroundImage: "/images/event1.jpg"
+      backgroundImage: "/eventBazaar/images/event1.jpg"
     },
     {
       eventId: 2,
@@ -15,7 +15,7 @@ export const events = [
       eventTime: "09:00",
       location: "Silicon Valley, California",
       price: 2000000.00,
-      backgroundImage: "/images/event2.jpeg"
+      backgroundImage: "/eventBazaar/images/event2.jpeg"
     },
     {
       eventId: 3,
@@ -24,7 +24,7 @@ export const events = [
       eventTime: "11:00",
       location: "Downtown LA, California",
       price: 75.00,
-      backgroundImage: "/images/event3.jpg"
+      backgroundImage: "/eventBazaar/images/event3.jpg"
     },
     {
       eventId: 4,
@@ -33,7 +33,7 @@ export const events = [
       eventTime: "19:30",
       location: "Grand Ballroom, Chicago",
       price: 150.00,
-      backgroundImage: "/images/event4.jpeg"
+      backgroundImage: "/eventBazaar/images/event4.jpeg"
     },
     {
       eventId: 5,
@@ -42,7 +42,7 @@ export const events = [
       eventTime: "10:00",
       location: "Union Square, San Francisco",
       price: 0.00, // Free event
-      backgroundImage: "/images/event5.jpg"
+      backgroundImage: "/eventBazaar/images/event5.jpg"
     }
   ];
   

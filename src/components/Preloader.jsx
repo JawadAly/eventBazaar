@@ -30,7 +30,7 @@ const Preloader = () => {
           <div className="columnLayout">
                 <div className="preLoaderNavLogo">
                     <a href="#">
-                        <img src='/images/eventBazarLogo.png' alt='brandLogo' className='img-fluid'/>
+                        <img src='./images/eventBazarLogo.png' alt='brandLogo' className='img-fluid'/>
                     </a>
                 </div>
             <CircularProgress color="warning"/>

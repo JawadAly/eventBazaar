@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="footerLogo">
                 <a href="#">
                   <img 
-                  src="/images/eventBazarLogo.png" 
+                  src="./images/eventBazarLogo.png" 
                   alt="brandLogo"
                   className="img-fluid"
                   />

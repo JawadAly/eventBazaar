@@ -33,7 +33,7 @@ const Navbar = () =>{
             <div className="navInner w-100 d-flex align-items-center justify-content-between">
                 <div className="navLogo">
                     <NavLink to='/'>
-                        <img src='/images/eventBazarLogo.png' alt='brandLogo' className='img-fluid'/>
+                        <img src='./images/eventBazarLogo.png' alt='brandLogo' className='img-fluid'/>
                     </NavLink>
                     
                 </div>

@@ -7,7 +7,7 @@ import { fetchCategsList } from '../apis/ListsService';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Categories from './Categories';
+import Categories from './Categories';  
 import { Link, NavLink } from 'react-router-dom';
 
 const Events = () =>{
