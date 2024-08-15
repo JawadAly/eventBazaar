@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="footerLogo">
                 <a href="#">
                   <img 
-                  src="./images/eventBazarLogo.png" 
+                  src="/eventBazaar/images/eventBazarLogo.png" 
                   alt="brandLogo"
                   className="img-fluid"
                   />
@@ -40,16 +40,16 @@ const Footer = () => {
             <div className="middleContent mb-3 pt-4">
               <ul>
                 <li>
-                  <NavLink to="/privacypolicy">Privacy Policy</NavLink>
+                  <NavLink to="/eventBazaar/privacypolicy">Privacy Policy</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/termsandconds">Terms and Conditions</NavLink>
+                  <NavLink to="/eventBazaar/termsandconds">Terms and Conditions</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/eventBazaar/login">Login</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/signup">Signup</NavLink>
+                  <NavLink to="/eventBazaar/signup">Signup</NavLink>
                 </li>
               </ul>
             </div>

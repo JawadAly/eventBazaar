@@ -28,14 +28,14 @@ const App = () =>{
       <Infobar/>
       <Navbar/>
         <Routes>
-          <Route exact path='/' element={<Home/>}/>
-          <Route exact path='/login' element={<Login/>}/>
-          <Route exact path='/signup' element={<Signup/>}/>
-          <Route exact path='/about' element={<About/>}/>
-          <Route exact path='/contact' element={<Contact/>}/>
-          <Route exact path='/events/:eventName' element={<EventView/>}/>
-          <Route exact path='/termsandconds' element={<TermsAndConds/>}/>
-          <Route exact path='/privacypolicy' element={<PrivacyPolicy/>}/>
+          <Route exact path='/eventBazaar/' element={<Home/>}/>
+          <Route exact path='/eventBazaar/login' element={<Login/>}/>
+          <Route exact path='/eventBazaar/signup' element={<Signup/>}/>
+          <Route exact path='/eventBazaar/about' element={<About/>}/>
+          <Route exact path='/eventBazaar/contact' element={<Contact/>}/>
+          <Route exact path='/eventBazaar/events/:eventName' element={<EventView/>}/>
+          <Route exact path='/eventBazaar/termsandconds' element={<TermsAndConds/>}/>
+          <Route exact path='/eventBazaar/privacypolicy' element={<PrivacyPolicy/>}/>
           <Route path='/*' element={<Error/>}/>
         </Routes>
       <Footer/>

@@ -32,8 +32,8 @@ const Navbar = () =>{
         <div className="container">
             <div className="navInner w-100 d-flex align-items-center justify-content-between">
                 <div className="navLogo">
-                    <NavLink to='/'>
-                        <img src='./images/eventBazarLogo.png' alt='brandLogo' className='img-fluid'/>
+                    <NavLink to='/eventBazaar/'>
+                        <img src='/eventBazaar/images/eventBazarLogo.png' alt='brandLogo' className='img-fluid'/>
                     </NavLink>
                     
                 </div>
@@ -49,7 +49,7 @@ const Navbar = () =>{
                             <Search/>
                         </li>
                         <li>
-                            <NavLink to='/'>Home</NavLink>
+                            <NavLink to='/eventBazaar/'>Home</NavLink>
                         </li>
                         <li className='categoriesDropdown d-none'>
                             <div className="dropdown">
@@ -71,7 +71,7 @@ const Navbar = () =>{
                             <a href="#">About</a>
                         </li>
                         <li>
-                            <NavLink to='/login'>Account</NavLink>
+                            <NavLink to='/eventBazaar/login'>Account</NavLink>
                         </li>
                             <div className="dropdown">
                                 <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

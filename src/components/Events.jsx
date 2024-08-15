@@ -96,7 +96,7 @@ const Events = () =>{
                         events.map((value,index)=>{
                             return(
                                 <>
-                                <Link to={`/events/${value.eventName}`}  className='featCardAnchor'>
+                                <Link to={`/eventBazaar/events/${value.eventName}`}  className='featCardAnchor'>
                                     <div key={index} className='featuredCard me-5'>
                                         <img className='img-fluid featCardImg' src={value.backgroundImage} alt={value.eventName}/>
                                         <div className='featCardData pt-2 ps-3'>

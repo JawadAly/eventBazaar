@@ -9,7 +9,7 @@ const EventCard = ({ name, date, time, location, cost, bgImg }) => {
   // background-image: url('/images/event1.jpg');
   return (
     <>
-      <Link to={`/events/${name}`} style={{textDecoration:'none'}}>
+      <Link to={`/eventBazaar/events/${name}`} style={{textDecoration:'none'}}>
         <div className="myCard p-2" style={bgImgStyle}>
           <div className="eventDateTime d-flex flex-column justify-content-center ps-1">
             <span className="mb-1">
