@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
 import CustomButton from './CustomMUIBtn';
 import Search from './Search';
+import { eventCategs } from '../apis/Categs'; 
 
 const Navbar = () =>{
     const [isSticky, setIsSticky] = useState(false);
@@ -31,9 +32,10 @@ const Navbar = () =>{
         <div className="container">
             <div className="navInner w-100 d-flex align-items-center justify-content-between">
                 <div className="navLogo">
-                    <a href="#">
+                    <NavLink to='/'>
                         <img src='/images/eventBazarLogo.png' alt='brandLogo' className='img-fluid'/>
-                    </a>
+                    </NavLink>
+                    
                 </div>
                 <input type="checkbox" id="navSideBar" className="d-none checkBoxSider"/>
                 <label htmlFor="navSideBar" className="d-none navSideBarBtn d-flex align-items-center justify-content-center flex-column">
@@ -49,6 +51,22 @@ const Navbar = () =>{
                         <li>
                             <NavLink to='/'>Home</NavLink>
                         </li>
+                        <li className='categoriesDropdown d-none'>
+                            <div className="dropdown">
+                                <button className="btn dropdown-toggle categsDropdownToggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Categories
+                                </button>
+                                <div className="collapse" id="collapseExample">
+                                    <ul className='categDropUl'>
+                                    {
+                                        eventCategs.map((value,index)=>{
+                                            return <li key={index}>{value.categName}</li>;
+                                        })
+                                    }
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                         <li>
                             <a href="#">About</a>
                         </li>
@@ -57,7 +75,6 @@ const Navbar = () =>{
                         </li>
                             <div className="dropdown">
                                 <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i className="fa-regular fa-user me-2"></i>
                                     Jawad
                                 </button>
                                 <ul className="dropdown-menu">

@@ -130,6 +130,25 @@ section{
 .brandSocials ul li{
   margin-right: 30px;
 }
+/* categDropdown css */
+.categDropUl{
+padding-left: 15px;
+}
+.categDropUl li{
+  margin: 5px 0px 30px 0px !important;
+  border-bottom: 1px solid #ffffff;
+  color: #f5f5f5;
+}
+.categDropUl li:first-child{
+  border-bottom: 1px solid #ffffff !important;
+}
+.categsDropdownToggler{
+  padding-left: 0px;
+  font-size: 18px;
+}
+.categsDropdownToggler:focus{
+  border: none;
+}
 /* preloader css */
 .preloader{
   width: 100%;
@@ -270,6 +289,7 @@ section{
   position: absolute;
   top: 110%;
 }
+ 
 /* featured events section css */
 .featuredCard{
   max-width: 270px;
@@ -476,6 +496,7 @@ section{
   font-weight: 800;
   font-size: 3rem;
 }
+
 .eventViewDate{
   color: lightslategray;
   font-weight: 600;
@@ -485,8 +506,9 @@ section{
   font-weight: 600;
 }
 .eventViewPrice{
-  min-width: 70px;
-  height: 40px;
+  /* min-width: 70px; */
+  width: fit-content;
+  height: fit-content;
   background-color: #bc2649;
   font-size: large;
   border-radius: 12px;
@@ -494,7 +516,38 @@ section{
   animation: heartBeat infinite; 
   animation-duration: 2s; 
 }
-
+.custInterestForm{
+  width: max-content;
+  border-radius: 12px;
+  color: #ffffff;
+}
+.contactArea{
+  max-width: 480px;
+  height: max-content;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.socialHolder{
+  padding: 7px 15px;
+  color: #bc2649;
+  border-radius: 6px;
+  background-color: #FFC3D4;
+  cursor: pointer;
+}
+.eventSalutation{
+  background-color: #FFC3D4;
+  width: fit-content;
+  border-radius: 6px;
+  padding: 10px;
+  color: #bc2649;
+}
+.eventViewDesc{
+  background-color: #FFC3D4;
+  width: fit-content;
+  border-radius: 6px;
+  padding: 10px;
+}
 /* media queries */
 .themeColor{
   color: #bc2649;
@@ -532,6 +585,7 @@ section{
     transition: cubic-bezier(0.165, 0.84, 0.44, 1);
     transition-duration: 1s;
     opacity: 0.95;
+    overflow: auto;
 }
 .navUl{
     flex-direction: column;
@@ -582,6 +636,9 @@ section{
   grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
   grid-gap: 30px 15px;
 }
+.categoriesDropdown{
+  display: block !important;
+}
 }
 @media only screen and (max-width:576px){
   .featuredCard{
@@ -593,5 +650,16 @@ section{
     grid-template-columns: repeat(1, 1fr); /* 1 column on extra small screens */
     grid-gap: 50px 10px;
   }
-
+  .slick-prev{
+    left: 0px !important;
+  }
+  .slick-next{
+    right: 20px !important;
+  }
+  .eventViewImgHolder{
+    height: 300px;
+  }
+  .eventViewPrice{
+    margin: 20px 0px;
+  }
 }

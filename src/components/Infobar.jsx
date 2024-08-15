@@ -1,7 +1,6 @@
 import React from 'react';
 import { TwittIcon,LinkedIcon,FacebIcon,InstaIcon } from './Socials';
-import EmailIcon from '@mui/icons-material/Email';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import { MailIcon,PhoneIcon } from './Socials';
 
 const Infobar = () =>{
     return(
@@ -11,14 +10,14 @@ const Infobar = () =>{
                     <div className='d-flex align-items-center justify-content-between'>
                         <div className='emailAndPhone d-flex align-items-center'>
                             <p>
-                                <EmailIcon fontSize='small'/>
+                                <MailIcon font='small'/>
                                 <span className='ms-2'>
                                     info@event-bazaar.pk
                                 </span>
                                 
                             </p>
                             <p className='ms-2'>
-                                <LocalPhoneIcon fontSize='small'/>
+                                <PhoneIcon font='small'/>
                                 <span className='ms-2'>
                                     +92 3463654223
                                 </span>

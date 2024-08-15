@@ -7,6 +7,13 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import EmailIcon from '@mui/icons-material/Email';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import MessageIcon from '@mui/icons-material/Message';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import RedoIcon from '@mui/icons-material/Redo';
+import StyleIcon from '@mui/icons-material/Style';
+import GroupsIcon from '@mui/icons-material/Groups';
 
 export const TwittIcon = (props) =>{
     return <TwitterIcon fontSize={props.font}/>;
@@ -34,4 +41,25 @@ export const ProfileIcon = (props) =>{
 }
 export const LocationIcon = (props) =>{
     return <LocationOnOutlinedIcon fontSize={props.font}/>;
+}
+export const MailIcon = (props) =>{
+    return <EmailIcon fontSize={props.font}/>;
+}
+export const PhoneIcon = (props) =>{
+    return <LocalPhoneIcon fontSize={props.font}/>;
+}
+export const ChatIcon = (props) =>{
+    return <MessageIcon fontSize={props.font}/>;
+}
+export const WhtsappIcon = (props) =>{
+    return <WhatsAppIcon fontSize={props.font}/>;
+}
+export const ReduIcon = (props) =>{
+    return <RedoIcon fontSize={props.font}/>;
+}
+export const MoreTags = (props) =>{
+    return <StyleIcon fontSize={props.font}/>;
+}
+export const GroupIcon = (props) =>{
+    return <GroupsIcon fontSize={props.font}/>;
 }
