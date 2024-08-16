@@ -79,68 +79,82 @@ const Signup = () =>{
     }
     return(
         <>
-            <section className='loginSection'>
+            <section className='signupSection'>
                 <div className='container'>
-                    <div className='flexer d-flex align-items-center justify-content-center '>
-                        <div className='signupCard'>
-                            <div className='circle'>
-                                <h3 className='text-white circleText'>Event Bazaar</h3>
+                    <div className='signUpFlexer d-flex align-items-center justify-content-center py-5'>
+                        <div className='signUpCard'>
+                            <div className='signupCircle'>
+                                <h3 className='text-white signUpCircleText'>Event Bazaar</h3>
                             </div>
-                            <div className='formSection p-2'>
-                                <form onSubmit={submitRegisterData} className='w-100 d-flex justify-content-center flex-column p-3'>
-                                    <MUITextField 
-                                    val={registerData.firstName}
-                                    changeEvent={senseChange}
-                                    name='firstName'
-                                    type='text'
-                                    label='First Name'
-                                    startAdornmentIcon={PersonIcon}
-                                     />
-                                     <MUITextField 
-                                    val={registerData.lastName}
-                                    changeEvent={senseChange}
-                                    name='lastName'
-                                    type='text'
-                                    label='Last Name'
-                                    startAdornmentIcon={PersonIcon}
-                                     />
-                                     <MUITextField 
-                                    val={registerData.age}
-                                    changeEvent={senseChange}
-                                    name='age'
-                                    type='number'
-                                    label='Age'
-                                    startAdornmentIcon={CalendarTodayIcon}
-                                     />
-                                     <MUITextField 
-                                    val={registerData.phone}
-                                    changeEvent={senseChange}
-                                    name='phone'
-                                    type='tel'
-                                    label='Phone'
-                                    startAdornmentIcon={LocalPhoneIcon}
-                                     />
-                                     <MUITextField 
-                                    val={registerData.email}
-                                    changeEvent={senseChange}
-                                    name='email'
-                                    type='email'
-                                    label='Email'
-                                    startAdornmentIcon={EmailIcon}
-                                     />
-                                    <MUIPasswordField 
-                                    val={registerData.password}
-                                    changeEvent={senseChange}
-                                    name='password'
-                                    label='Password'
-                                    />
-                                    <MUIPasswordField 
-                                    val={registerData.confirmPassword}
-                                    changeEvent={senseChange}
-                                    name='confirmPassword'
-                                    label='Confirm Password'
-                                    />
-                                    {passwordMatchState && <span className='text-danger ps-2'>Passwords don't match</span>}
+                            <div className='signupFormArea p-2'>
+                                <form onSubmit={submitRegisterData}>
+                                    <div className='inputHolder pe-3'>
+                                        <MUITextField 
+                                        val={registerData.firstName}
+                                        changeEvent={senseChange}
+                                        name='firstName'
+                                        type='text'
+                                        label='First Name'
+                                        startAdornmentIcon={PersonIcon}
+                                        />
+                                    </div>
+                                    <div className='inputHolder pe-3'>
+                                        <MUITextField 
+                                        val={registerData.lastName}
+                                        changeEvent={senseChange}
+                                        name='lastName'
+                                        type='text'
+                                        label='Last Name'
+                                        startAdornmentIcon={PersonIcon}
+                                        />
+                                    </div>
+                                    <div className='inputHolder pe-3'>
+                                        <MUITextField 
+                                        val={registerData.age}
+                                        changeEvent={senseChange}
+                                        name='age'
+                                        type='number'
+                                        label='Age'
+                                        startAdornmentIcon={CalendarTodayIcon}
+                                        />
+                                    </div>
+                                    <div className='inputHolder pe-3'>
+                                        <MUITextField 
+                                        val={registerData.phone}
+                                        changeEvent={senseChange}
+                                        name='phone'
+                                        type='tel'
+                                        label='Phone'
+                                        startAdornmentIcon={LocalPhoneIcon}
+                                        />
+                                    </div>
+                                    <div className='inputHolder pe-3'>
+                                        <MUITextField 
+                                        val={registerData.email}
+                                        changeEvent={senseChange}
+                                        name='email'
+                                        type='email'
+                                        label='Email'
+                                        startAdornmentIcon={EmailIcon}
+                                        />
+                                    </div>
+                                    <div className='inputHolder pe-3'>
+                                        <MUIPasswordField 
+                                        val={registerData.password}
+                                        changeEvent={senseChange}
+                                        name='password'
+                                        label='Password'
+                                        />
+                                    </div>
+                                    <div className='inputHolder pe-3'>
+                                        <MUIPasswordField 
+                                        val={registerData.confirmPassword}
+                                        changeEvent={senseChange}
+                                        name='confirmPassword'
+                                        label='Confirm Password'
+                                        />
+                                        {passwordMatchState && <span className='text-danger ps-2'>Passwords don't match</span>}
+                                    </div>
                                     <div className='checkBoxHolder w-100'>
                                         <FormControlLabel 
                                         control={
@@ -166,7 +180,9 @@ const Signup = () =>{
 
                                         />
                                     </div>
-                                    <Button type='submit' variant="contained" style={{backgroundColor:'#bc2649'}}>Sign Up</Button>
+                                    <div className='inputHolder p-2'>
+                                        <Button type='submit' variant="contained" style={{backgroundColor:'#bc2649',width:'100%'}}>Sign Up</Button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -177,3 +193,4 @@ const Signup = () =>{
     );
 }
 export default Signup;
+

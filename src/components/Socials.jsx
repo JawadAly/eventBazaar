@@ -14,6 +14,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import RedoIcon from '@mui/icons-material/Redo';
 import StyleIcon from '@mui/icons-material/Style';
 import GroupsIcon from '@mui/icons-material/Groups';
+import GoogleIcon from '@mui/icons-material/Google';
 
 export const TwittIcon = (props) =>{
     return <TwitterIcon fontSize={props.font}/>;
@@ -62,4 +63,7 @@ export const MoreTags = (props) =>{
 }
 export const GroupIcon = (props) =>{
     return <GroupsIcon fontSize={props.font}/>;
+}
+export const GogleIcon = (props) =>{
+    return <GoogleIcon fontSize={props.font}/>;
 }

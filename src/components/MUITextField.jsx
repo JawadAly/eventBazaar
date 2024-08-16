@@ -36,7 +36,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 const MUITextField = ({ val, changeEvent, name, type, label, startAdornmentIcon: StartAdornmentIcon }) => {
     return (
       <>
-        <FormControl sx={{ m: 1 }} variant="outlined">
+        <FormControl sx={{ m: 1}} variant="outlined" fullWidth>
           <InputLabel htmlFor={`outlined-adornment-${name}`}>{label}</InputLabel>
           <OutlinedInput
             id={`outlined-adornment-${name}`}

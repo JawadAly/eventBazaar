@@ -93,7 +93,7 @@ section{
 }
 /* footer css */
 .footerSection{
-  min-height: 50vh;
+  min-height: fit-content;
   background-color: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: relative;
@@ -175,53 +175,85 @@ padding-left: 15px;
   height: 150px;
 }
 /* login section css */
+.loginSection{
+  min-height: fit-content;
+}
+.flexer{
+  width: 100%;
+  min-height: fit-content;
+}
 .loginCard{
   width: 400px;
-  height: 460px;
+  min-height: fit-content;
+  /* height: 460px; */
   background-color: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: relative;
   overflow: hidden;
-  max-height: 100vh; 
 }
-.flexer{
-  width: 100%;
-  min-height: 100vh;
+.loginFormSection{
+  margin-top: 180px;
 }
 .circle{
   width: 100%;
-  height: 80%;
+  height: 300px;
   background-color: #bc2649;
   border-radius: 50%;
-  position: relative;
-  top: -45%;
+  position: absolute;
+  top: -26%;
   left: 0;
-  right: 0;
 }
 .circleText{
   position: absolute;
-  top: 76%;
+  top: 70%;
   left: 26%;
   font-family: "Lobster", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 37px;
 }
-.formSection{
+/* .formSection{
   position: absolute;
   width: 100%;
   top: 38%;
-}
+} */
 /* signup section css */
-.signupCard{
+
+.signupSection{
+  min-height: fit-content !important;
+}
+ .signUpFlexer{
+  width: 100%;
+  min-height: fit-content;
+ }
+ .signUpCard{
   width: 400px;
-  height: 460px;
+  min-height: fit-content;
   background-color: #ffffff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: relative;
-  overflow-y: auto;
-  max-height: 100vh; 
-}
+  overflow: hidden;
+ }
+ .signupFormArea{
+  margin-top: 200px;
+ }
+ .signupCircle{
+  width: 100%;
+  height: 300px;
+  background-color: #bc2649;
+  border-radius: 50%;
+  position: absolute;
+  top: -17%;
+ }
+ .signUpCircleText{
+  position: absolute;
+  top: 70%;
+  left: 27%;
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 37px;
+ }
 /* carousel css */
 .myCarousel{
   position: relative;
@@ -300,9 +332,6 @@ padding-left: 15px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
-/* .featuredCard:hover{
-  transform: scale(1.09);
-} */
 .featCardImg{
   /* border-radius: 8px; */
   border-radius: 8px 8px 0px 0px;
@@ -341,12 +370,12 @@ padding-left: 15px;
 /* .slick-slide div{
   background-color: #454545;
 } */
-.slick-next{
+/* .slick-next{
   right: 0px !important;
 }
 .slick-prev{
   left: -20px !important;
-}
+} */
 .slick-next:before,
 .slick-prev:before{
   color: #bc2649 !important;
@@ -661,5 +690,9 @@ padding-left: 15px;
   }
   .eventViewPrice{
     margin: 20px 0px;
+  }
+  .cardCenterer{
+   /* width: fit-content;  */
+   padding-right: 30px;
   }
 }

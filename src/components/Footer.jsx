@@ -8,7 +8,7 @@ const Footer = () => {
     <>
       <section className="footerSection p-3">
         <div className="container">
-          <div className="footerFlexer d-flex  justify-content-between">
+          <div className="footerFlexer d-flex justify-content-between pb-3">
             <div className="footerLogo">
                 <a href="#">
                   <img 
@@ -84,12 +84,12 @@ const Footer = () => {
             <p className="text-center mt-1">
               CopyRight © {currentYear} Event-Bazaar. All Rights Reserved |
               Terms and Conditions applied. Developed by
-              <NavLink
+              <a
                 className="text-info ms-1"
-                to="https://jawadaly.github.io/CODESOFT/#home-section"
+                href="https://jawadaly.github.io/CODESOFT/#home-section"
               >
                 JS Dev.
-              </NavLink>
+              </a>
             </p>
           </div>
         </div>

@@ -18,8 +18,8 @@ const MUIPasswordField = ({ val, changeEvent, name, label}) =>{
     };
     return(
       <>
-        <FormControl sx={{ m: 1}} variant="outlined">
-          <InputLabel htmlFor={`outlined-adornment-${name}`}>Password</InputLabel>
+        <FormControl sx={{ m: 1}} variant="outlined" fullWidth>
+          <InputLabel htmlFor={`outlined-adornment-${name}`}>{label}</InputLabel>
           <OutlinedInput
             id={`outlined-adornment-${name}`}
             required

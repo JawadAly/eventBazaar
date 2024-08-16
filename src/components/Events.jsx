@@ -14,7 +14,7 @@ const Events = () =>{
     const[allEventsEnable,allEventsEnableSet] = useState(3);
     const settings = {
         dots: true,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 3,
@@ -89,7 +89,7 @@ const Events = () =>{
                 {/* categories section */}
                 {/* featured events section */}
                     <h3 className='eventsSecHeading ps-3 mb-3' style={{color:'#bc2649'}}>Featured</h3>
-                    <div className='featuredCardsHolder p-2 w-100 pb-5'>
+                    <div className='featuredCardsHolder w-100 pb-5'>
                     
                     <Slider {...settings}>
                     {
@@ -97,16 +97,18 @@ const Events = () =>{
                             return(
                                 <>
                                 <Link to={`/eventBazaar/events/${value.eventName}`}  className='featCardAnchor'>
-                                    <div key={index} className='featuredCard me-5'>
-                                        <img className='img-fluid featCardImg' src={value.backgroundImage} alt={value.eventName}/>
-                                        <div className='featCardData pt-2 ps-3'>
-                                            <div className='d-flex justify-content-between'>
-                                                <p className='featEventName'>{value.eventName}</p>
-                                                <span className='featEventCost me-2 p-2 text-center d-flex align-items-center justify-content-center'><TagIcon font='small'/> Rs. {value.price} </span>
+                                    <div className='cardCenterer d-flex justify-content-center'>
+                                        <div key={index} className='featuredCard'>
+                                            <img className='img-fluid featCardImg' src={value.backgroundImage} alt={value.eventName}/>
+                                            <div className='featCardData pt-2 ps-3'>
+                                                <div className='d-flex justify-content-between'>
+                                                    <p className='featEventName'>{value.eventName}</p>
+                                                    <span className='featEventCost me-2 p-2 text-center d-flex align-items-center justify-content-center'><TagIcon font='small'/> Rs. {value.price} </span>
+                                                </div>
+                                                <p className='featEventDateTime mb-2'><CalendarIcon font='small' /> {value.eventDate} . {value.eventTime}</p>
+                                                
+                                                <p className='featEventLocation'><ProfileIcon font='small' /> {value.location}</p>
                                             </div>
-                                            <p className='featEventDateTime mb-2'><CalendarIcon font='small' /> {value.eventDate} . {value.eventTime}</p>
-                                            
-                                            <p className='featEventLocation'><ProfileIcon font='small' /> {value.location}</p>
                                         </div>
                                     </div>
                                 </Link>
