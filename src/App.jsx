@@ -21,6 +21,7 @@ import About from './Pages/About.jsx';
 import Preloader from './components/Preloader.jsx';
 import Error from './Pages/Error.jsx';
 import EventView from './Pages/EventView.jsx';
+import Account from './Pages/Account.jsx';
 
 const App = () =>{
   return(
@@ -33,6 +34,7 @@ const App = () =>{
           <Route exact path='/eventBazaar/signup' element={<Signup/>}/>
           <Route exact path='/eventBazaar/about' element={<About/>}/>
           <Route exact path='/eventBazaar/contact' element={<Contact/>}/>
+          <Route exact path='/eventBazaar/account' element={<Account/>}/>
           <Route exact path='/eventBazaar/events/:eventName' element={<EventView/>}/>
           <Route exact path='/eventBazaar/termsandconds' element={<TermsAndConds/>}/>
           <Route exact path='/eventBazaar/privacypolicy' element={<PrivacyPolicy/>}/>

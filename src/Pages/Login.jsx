@@ -90,7 +90,7 @@ const Login = () =>{
                                             <GogleIcon fontSize="inherit" />
                                         </IconButton>
                                     </div>
-                                    <p className='text-end mt-4'>
+                                    <p className='text-end mt-4 pe-2'>
                                         <Link to='/eventBazaar/signup' className='officialTextColor'>
                                             Dont have an account? Signup!
                                         </Link>

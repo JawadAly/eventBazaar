@@ -9,7 +9,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { pink } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { signUp } from '../apis/AuthService';
 
 const Signup = () =>{
@@ -174,7 +174,7 @@ const Signup = () =>{
                                         label={
                                         <>
                                             I agree to the {' '}
-                                            <NavLink to='/termsandconds' style={{color:'#bc2649'}}>terms and coditions</NavLink>
+                                            <Link to='/termsandconds' style={{color:'#bc2649'}}>terms and coditions</Link>
                                         </>
                                         }
 
@@ -183,6 +183,11 @@ const Signup = () =>{
                                     <div className='inputHolder p-2'>
                                         <Button type='submit' variant="contained" style={{backgroundColor:'#bc2649',width:'100%'}}>Sign Up</Button>
                                     </div>
+                                    <p className='text-end mt-3 pe-2'>
+                                        <Link to='/eventBazaar/login' className='officialTextColor'>
+                                            Already have an account? Login!
+                                        </Link>
+                                    </p>
                                 </form>
                             </div>
                         </div>

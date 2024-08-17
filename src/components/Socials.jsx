@@ -15,6 +15,7 @@ import RedoIcon from '@mui/icons-material/Redo';
 import StyleIcon from '@mui/icons-material/Style';
 import GroupsIcon from '@mui/icons-material/Groups';
 import GoogleIcon from '@mui/icons-material/Google';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export const TwittIcon = (props) =>{
     return <TwitterIcon fontSize={props.font}/>;
@@ -66,4 +67,7 @@ export const GroupIcon = (props) =>{
 }
 export const GogleIcon = (props) =>{
     return <GoogleIcon fontSize={props.font}/>;
+}
+export const ArrowNextIcon = (props) =>{
+    return <ArrowForwardIcon className='themeColor' fontSize={props.font}/>;
 }
