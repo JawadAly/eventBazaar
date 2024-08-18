@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import IOSSwitch from '../components/IOSswitch';
 import { ArrowNextIcon } from '../components/Socials';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import { Link } from 'react-router-dom';
 
 const Account = () =>{
@@ -24,7 +26,9 @@ const Account = () =>{
                     <hr/>
                     <div className='personalInfoSection pb-5'>
                         <div className='upperInfoContainer'>
-                            <div className='userImgHolder'></div>
+                            <div className='userInitialsHolder d-flex align-items-center justify-content-center'>
+                                <h1 className='userInitials'>JS</h1>
+                            </div>
                             <h4 className='userAccName text-center mt-2 mb-0'>Jawad S</h4>
                             <p className='userAccEmail'>jawad@gmail.com</p>
                         </div>
@@ -32,13 +36,15 @@ const Account = () =>{
                             <h3 className='personalInfoHeading mt-4'>Personal Information</h3>
                             <p className='personalInfoStatement'>Manage your personal information ,including phone numbers and email address where you can be contacted.</p>
                             <div className='profileOptionsHolder p-1'>
-                                <div className='profileOption p-4'>
-                                    <div className='d-flex align-items-center justify-content-between'>
-                                        <h5>Change Password</h5>
-                                        <LockResetIcon className='themeColor' fontSize='large'/>
+                                <Link to='/eventBazaar/changepassword' className='text-decoration-none'>
+                                    <div className='profileOption p-4'>
+                                        <div className='d-flex align-items-center justify-content-between'>
+                                            <h5 className='text-dark'>Change Password</h5>
+                                            <LockResetIcon className='themeColor' fontSize='large'/>
+                                        </div>
+                                        <p className='themeColor'>**********</p>
                                     </div>
-                                    <p className='themeColor'>**********</p>
-                                </div>
+                                </Link>
                                 <div className='profileOption p-4'>
                                     <div className='d-flex align-items-center justify-content-between'>
                                         <h5>Switch to lister mode</h5>
@@ -53,6 +59,23 @@ const Account = () =>{
                                     </div>
                                     <p className='themeColor'>Current Notifications State: {notificationState ? 'On' : 'Off'}</p>
                                 </div>
+                                <Link to='/eventBazaar/profilesettings' className='text-decoration-none'>
+                                    <div className='profileOption p-4'>
+                                        <div className='d-flex align-items-center justify-content-between'>
+                                            <h5 className='text-dark'>Profile Settings</h5>
+                                            <ManageAccountsIcon className='themeColor' fontSize='large'/>
+                                        </div>
+                                        <p className='themeColor'>Options to edit your profile</p>
+                                    </div>
+                                </Link>
+                                <Link className='text-decoration-none'>
+                                    <div className='profileOption p-4 d-flex align-items-center justify-content-between'>
+                                        {/* <div className='d-flex align-items-center justify-content-between'> */}
+                                            <h5 className='text-dark'>Saved Events</h5>
+                                            <BookmarksIcon className='themeColor' font='large'/>    
+                                        {/* </div> */}
+                                    </div>
+                                </Link>
                                 <Link to='/eventBazaar/termsandconds' className='text-decoration-none'>
                                     <div className='profileOption p-4 d-flex align-items-center justify-content-between'>
                                         {/* <div className='d-flex align-items-center justify-content-between'> */}

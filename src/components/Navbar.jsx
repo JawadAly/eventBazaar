@@ -77,9 +77,15 @@ const Navbar = () =>{
                                 <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Jawad
                                 </button>
-                                <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item">Logout</a></li>
-                                    <li><a className="dropdown-item">My Dash</a></li>
+                                <ul className="dropdown-menu p-1 navDropDownMenu">
+                                    {/* <li><a className="dropdown-item">My Account</a></li>
+                                    <li><a className="dropdown-item">Logout</a></li> */}
+                                    <li>
+                                        <NavLink to='/eventBazaar/account'>My Account</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink>Logout</NavLink>
+                                    </li>
                                 </ul>
                             </div>
                     </ul>

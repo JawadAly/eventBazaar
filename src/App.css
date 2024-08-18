@@ -88,6 +88,13 @@ section{
 .stickyNav{
   top: 0;
 }
+.navDropDownMenu li{
+  width: 100%;
+  text-align: center;
+}
+.navDropDownMenu li:hover{
+  background-color: #FFC3D4;
+}
 .officialTextColor{
   color: #bc2649;
 }
@@ -581,7 +588,8 @@ padding-left: 15px;
 .accountSection{
   min-height: fit-content !important;
 }
-.accountHeading{
+.accountHeading,
+.editProfileHeading{
   font-weight: 600;
  }
 .signOutBtn{
@@ -592,14 +600,17 @@ padding-left: 15px;
 .signOutBtn:hover{
   background-color: #F35D74;
 }
-.userImgHolder{
+.userInitialsHolder{
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-color: lightgray;
-  background-image: url('/eventBazaar/images/userLogoIcon.png');
-  background-position: center center;
-  background-size: contain;
+  background-color: #FFC3D4;
+  border: 4px solid #bc2649;
+}
+.userInitials{
+  font-weight: 600;
+  font-size: 50px;
+  color: #bc2649;
 }
 .upperInfoContainer,
 .lowerInfoContainer{
@@ -626,6 +637,30 @@ padding-left: 15px;
   cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+/* profileSettings page css */
+.profileSettingsSection{
+  min-height: fit-content !important;
+}
+.editArea{
+  max-width: 800px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+}
+.userEditProfileInitialsHolder{
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 4px solid #bc2649;
+  background-color: #FFC3D4;
+}
+.editProfileUserInitials{
+  font-weight: 600;
+}
+/* accountChangePass section css */
+.accountChangePassSection{
+  min-height: fit-content !important;
+}
+
 /* media queries */
 .themeColor{
   color: #bc2649;
