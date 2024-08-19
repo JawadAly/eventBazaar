@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import IOSSwitch from '../components/IOSswitch';
-import { ArrowNextIcon } from '../components/Socials';
+import { ArrowNextIcon, BkMarkIcon } from '../components/Socials';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import { Link } from 'react-router-dom';
 
 const Account = () =>{
@@ -68,11 +67,11 @@ const Account = () =>{
                                         <p className='themeColor'>Options to edit your profile</p>
                                     </div>
                                 </Link>
-                                <Link className='text-decoration-none'>
+                                <Link to='/eventBazaar/savedEvents' className='text-decoration-none'>
                                     <div className='profileOption p-4 d-flex align-items-center justify-content-between'>
                                         {/* <div className='d-flex align-items-center justify-content-between'> */}
                                             <h5 className='text-dark'>Saved Events</h5>
-                                            <BookmarksIcon className='themeColor' font='large'/>    
+                                            <BkMarkIcon font='large'/>    
                                         {/* </div> */}
                                     </div>
                                 </Link>

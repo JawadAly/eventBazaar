@@ -81,10 +81,10 @@ const Navbar = () =>{
                                     {/* <li><a className="dropdown-item">My Account</a></li>
                                     <li><a className="dropdown-item">Logout</a></li> */}
                                     <li>
-                                        <NavLink to='/eventBazaar/account'>My Account</NavLink>
+                                        <NavLink className='text-dark' to='/eventBazaar/account'>My Account</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink>Logout</NavLink>
+                                        <NavLink className='text-dark'>Logout</NavLink>
                                     </li>
                                 </ul>
                             </div>

@@ -660,7 +660,10 @@ padding-left: 15px;
 .accountChangePassSection{
   min-height: fit-content !important;
 }
-
+/* saved events section css */
+/* .savedEventsSection{
+  min-height: fit-content !important;
+} */
 /* media queries */
 .themeColor{
   color: #bc2649;

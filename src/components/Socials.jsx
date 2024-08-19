@@ -16,6 +16,7 @@ import StyleIcon from '@mui/icons-material/Style';
 import GroupsIcon from '@mui/icons-material/Groups';
 import GoogleIcon from '@mui/icons-material/Google';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
 
 export const TwittIcon = (props) =>{
     return <TwitterIcon fontSize={props.font}/>;
@@ -70,4 +71,7 @@ export const GogleIcon = (props) =>{
 }
 export const ArrowNextIcon = (props) =>{
     return <ArrowForwardIcon className='themeColor' fontSize={props.font}/>;
+}
+export const BkMarkIcon = (props) =>{
+    return <BookmarksIcon className='themeColor' fontSize={props.font}/>;
 }
