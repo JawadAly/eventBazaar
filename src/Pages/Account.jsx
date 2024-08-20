@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import IOSSwitch from '../components/IOSswitch';
 import { ArrowNextIcon, BkMarkIcon } from '../components/Socials';
+import AddIcon from '@mui/icons-material/Add';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { Link } from 'react-router-dom';
 
@@ -18,9 +19,12 @@ const Account = () =>{
         <>
             <section className='accountSection'>
                 <div className='container'>
-                    <div className='headingPart d-flex align-items-center justify-content-between mt-4'>
+                    <div className='headingPart d-flex align-items-center justify-content-between mt-4 flex-wrap'>
                         <h3 className='accountHeading'>Account</h3>
-                        <button className='btn rounded-pill signOutBtn'>Sign out</button>
+                        <div className='accountBtnsArea'>
+                            {profileState && <Link to='/eventBazaar/addEvent'><button className='btn rounded-pill signOutBtn me-2'>Add Event</button></Link>}
+                            <button className='btn rounded-pill signOutBtn'>Sign out</button>
+                        </div>
                     </div>
                     <hr/>
                     <div className='personalInfoSection pb-5'>

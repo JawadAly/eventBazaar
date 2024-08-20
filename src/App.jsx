@@ -25,6 +25,8 @@ import Account from './Pages/Account.jsx';
 import ProfileSettings from './Pages/ProfileSettings.jsx';
 import AccountChangePass from './Pages/AccountChangePass.jsx';
 import SavedEvents from './Pages/SavedEvents.jsx';
+import AddEvent from './Pages/AddEvent.jsx';
+import EventsContext from './components/EventsContext.jsx';
 
 const App = () =>{
   return(
@@ -39,6 +41,7 @@ const App = () =>{
           <Route exact path='/eventBazaar/contact' element={<Contact/>}/>
           <Route exact path='/eventBazaar/account' element={<Account/>}/>
           <Route exact path='/eventBazaar/savedEvents' element={<SavedEvents/>}/>
+          <Route exact path='/eventBazaar/addEvent' element={<EventsContext> <AddEvent/> </EventsContext>}/>
           <Route exact path='/eventBazaar/profilesettings' element={<ProfileSettings/>}/>
           <Route exact path='/eventBazaar/changepassword' element={<AccountChangePass/>}/>
           <Route exact path='/eventBazaar/events/:eventName' element={<EventView/>}/>

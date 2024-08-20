@@ -33,15 +33,17 @@ import InputAdornment from "@mui/material/InputAdornment";
 // export default MUITextField;
 
 
-const MUITextField = ({ val, changeEvent, name, type, label, startAdornmentIcon: StartAdornmentIcon ,readonly}) => {
+const MUITextField = ({ val, changeEvent, name, type, label, startAdornmentIcon: StartAdornmentIcon ,readonly,isMultiline}) => {
     return (
       <>
         <FormControl sx={{ m: 1}} variant="outlined" fullWidth>
           <InputLabel htmlFor={`outlined-adornment-${name}`}>{label}</InputLabel>
           <OutlinedInput
             id={`outlined-adornment-${name}`}
-            required
+            // required
             value={val}
+            multiline={isMultiline}
+            rows={5}
             onChange={changeEvent}
             name={name}
             type={type}
