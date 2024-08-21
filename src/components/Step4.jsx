@@ -1,24 +1,58 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import MUITextField from "../components/MUITextField";
 import SimpleMUIButton from "./SimpleMUIButton";
 import { stepContext } from "./EventsContext";
-import { TagIcon } from "./Socials";
+import { CalendarIcon, ClockIcon, TagIcon } from "./Socials";
+import ModalWindow from "./MUIModelWindow";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+// import MUIModelWindow from "./MUIModelWindow";
 
 const Step4 = () => {
-  const { currentStep, setCurrentStep, eventData, setEventData,senseEventDataChange } = useContext(stepContext);
+  const[passDetails,setPassDetails] = useState({
+    passTitle : '',
+    passFullPrice : '',
+    passPrice : '',
+    passDiscount : '',
+    passExpiryDate : '',
+  });
+  const sensePassChange = (e) =>{
+    const{name,value} = e.target;
+    setPassDetails((prevVal)=>{
+      return{
+        ...prevVal,
+        [name] : value
+      };
+    });
+  }
+  const deletePass = (deletionKey) =>{
+    setEventData((prevVal)=>{
+      return{
+        ...prevVal,
+        passDetails: prevVal.passDetails.filter((value,index)=> index !==deletionKey )
+      };
+    });
+  }
+  const {
+    currentStep,
+    setCurrentStep,
+    eventData,
+    setEventData,
+    senseEventDataChange,
+  } = useContext(stepContext);
+  // const [open, setOpen] = useState(false);
   return (
     <>
       <h4 className="mt-4">What is the price range of your pass?</h4>
       <div className="row">
         <div className="col-md-5 col-12 mt-2 ps-4">
           <label className="radioInputHolder mb-3">
-            <input 
-            id="freeEvent"
-            type="radio"
-            value={true} 
-            checked = {eventData.isFreeEvent === true}
-            name="isFreeEvent"
-            onChange={senseEventDataChange}
+            <input
+              id="freeEvent"
+              type="radio"
+              value={true}
+              name="isFreeEvent"
+              onChange={senseEventDataChange}
             />
             <label htmlFor="freeEvent" className="ms-3">
               This is a free event
@@ -30,11 +64,11 @@ const Step4 = () => {
         <div className="col-md-5 col-12 mt-2 ps-4">
           <label className="radioInputHolder">
             <input
-            id="paidEvent"
-            type="radio"
-            value={false} 
-            name="isFreeEvent"
-            onChange={senseEventDataChange}
+              id="paidEvent"
+              type="radio"
+              value={false}
+              name="isFreeEvent"
+              onChange={senseEventDataChange}
             />
             <label htmlFor="paidEvent" className="ms-3">
               This is a paid event
@@ -50,7 +84,7 @@ const Step4 = () => {
                 label="Starts From"
                 type="number"
                 startAdornmentIcon={TagIcon}
-                name='eventStartsFrom'
+                name="eventStartsFrom"
                 val={eventData.eventStartsFrom}
                 changeEvent={senseEventDataChange}
               />
@@ -62,7 +96,7 @@ const Step4 = () => {
                 label="Goes Upto"
                 type="number"
                 startAdornmentIcon={TagIcon}
-                name='eventGoesUpto'
+                name="eventGoesUpto"
                 val={eventData.eventGoesUpto}
                 changeEvent={senseEventDataChange}
               />
@@ -72,20 +106,149 @@ const Step4 = () => {
             <div className="col-md-5 col-12">
               <div className="d-flex align-items-center justify-content-between p-2 mt-4 pb-1">
                 <h5>Pass Details</h5>
-                <button className="themeColor addPassBtn">Add Pass</button>
+                <button
+                  className="themeColor addPassBtn"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  Add Pass
+                </button>
               </div>
               <p className="ps-3 pe-3 text-center">
                 You need to add atleast one type of pass for paid events.
               </p>
+              {
+                eventData.passDetails.map((value,index)=>{
+                  return(
+                      <div className="eventPass p-3 mb-3" key={index}>
+                        <div className="d-flex align-items-center justify-content-between">
+                          <div className="passTitle">
+                            {value.passTitle}
+                          </div>
+                          <div className="actions">
+                            <EditNoteIcon className="themeColor me-2"/>
+                            <DeleteOutlineIcon className="themeColor" onClick={()=> deletePass(index)}/>
+                          </div>
+                        </div>
+                        <div className="passDetails d-flex mt-2">
+                          <p className="mb-0">
+                            <TagIcon font='small'/> {value.passFullPrice} 
+                          </p>
+                          <s className="percentage ms-3">{value.passDiscount}</s>
+                          <p className="ms-3 mb-0">
+                            <ClockIcon font='small' incomingClass='themeColor' /> {value.passExpiryDate}
+                          </p>
+                        </div>
+                      </div>
+                  );
+                })
+              }
+
             </div>
           </div>
+          <ModalWindow>
+            <div className="modal-header">
+              <h5 className="modal-title text-center w-100">Pass Details</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body p-4 pe-5">
+              <MUITextField 
+              label='Pass Name' 
+              type='text'
+              name='passTitle'  
+              val={passDetails.passTitle}
+              changeEvent={sensePassChange}
+              />
+              <MUITextField 
+              label='Full Price' 
+              type='number'
+              name='passFullPrice'  
+              val={passDetails.passFullPrice}
+              changeEvent={sensePassChange}
+              />
+              <p className="p-2">Discount (Optional)</p>
+              <div className="row">
+                <div className="col-md-6 col-6">
+                  <MUITextField 
+                  label='Price' 
+                  type='number'
+                  name='passPrice'  
+                  val={passDetails.passPrice}
+                  changeEvent={sensePassChange}
+                  />
+                </div>
+                <div className="col-md-6 col-6">
+                  <MUITextField 
+                  label='Percentage' 
+                  type='number'
+                  name='passDiscount'  
+                  val={passDetails.passDiscount}
+                  changeEvent={sensePassChange}
+                  />
+                </div>
+              </div>
+              <MUITextField 
+              startAdornmentIcon={CalendarIcon}
+              label='Ending On' 
+              type='date'
+              name='passExpiryDate' 
+              val={passDetails.passExpiryDate}
+              changeEvent={sensePassChange}
+              />
+              <div className="d-flex align-items-center justify-content-around mt-3">
+                <button className="btn btn-secondary" type="button" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                <button 
+                className="btn btn-secondary"
+                type="button" 
+                style={{backgroundColor:'#bc2649'}}
+                onClick={()=>{
+                  setEventData((prevVal)=>{
+                    return{
+                      ...prevVal,
+                      passDetails:[...prevVal.passDetails,passDetails]
+                    };
+                  });
+                  alert('Pass added successfully');
+                }}
+                >
+                Add Pass
+                </button>
+              </div>
+            </div>
+          </ModalWindow>
         </>
       )}
 
       <div className="col-2 d-flex justify-content-between">
         <div className="continueBtnHolder p-2 mt-2">
           <SimpleMUIButton
-            passesFunc={() => setCurrentStep(currentStep + 1)}
+            passesFunc={(e) => {
+              e.preventDefault();
+              if (eventData.isFreeEvent === "") {
+                alert("Please decide weather your event is free or paid!");
+              } else {
+                if (eventData.isFreeEvent === "false") {
+                  if (
+                    eventData.eventStartsFrom === "" ||
+                    eventData.eventGoesUpto === ""
+                  ) {
+                    alert(
+                      "Please provide lower and upper price for your event"
+                    );
+                  } else {
+                    setCurrentStep(currentStep + 1);
+                  }
+                } else {
+                  setCurrentStep(currentStep + 1);
+                }
+              }
+            }}
             type="contained"
             content="Continue"
           />

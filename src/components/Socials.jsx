@@ -31,13 +31,13 @@ export const InstaIcon = (props) =>{
     return <InstagramIcon fontSize={props.font}/>;
 }
 export const ClockIcon = (props) =>{
-    return <AccessTimeIcon fontSize={props.font}/>;
+    return <AccessTimeIcon fontSize={props.font} className={props.incomingClass}/>;
 }
 export const CalendarIcon = (props) =>{
     return <CalendarTodayIcon fontSize={props.font}/>;
 }
 export const TagIcon = (props) =>{
-    return <LocalOfferOutlinedIcon fontSize={props.font}/>;
+    return <LocalOfferOutlinedIcon fontSize={props.font} className='themeColor'/>;
 }
 export const ProfileIcon = (props) =>{
     return <AssignmentIndOutlinedIcon fontSize={props.font}/>;

@@ -10,7 +10,7 @@ const Step2 = () => {
     <>
       <h4 className="mt-4">Where is it going to happen?</h4>
       <div className="row">
-        <div className="col-md-5 col-12">
+        <div className="col-md-5 col-12 pe-4">
           <MUITextField 
           label="Location"
           startAdornmentIcon={LocationIcon} 
@@ -23,7 +23,10 @@ const Step2 = () => {
       <div className="col-2 d-flex justify-content-between">
         <div className="continueBtnHolder p-2 mt-2">
             <SimpleMUIButton
-            passesFunc={() => setCurrentStep(currentStep + 1)}
+            passesFunc={(e) => {
+              e.preventDefault();
+              eventData.eventLocation === '' ? alert('Please provide the location of the event!') : setCurrentStep(currentStep + 1);
+            }}
             type="contained"
             content="Continue"
             />

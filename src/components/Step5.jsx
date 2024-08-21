@@ -5,21 +5,25 @@ import { stepContext } from "./EventsContext";
 
 const Step5 = () => {
     const{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange} = useContext(stepContext);
-
+    
   return (
     <>
       <h4 className="mt-4">Have a name and photo for your event?</h4>
       <div className="row">
         <div className="col-md-5 col-12 mt-2">
-            <div class="custom-file-input-holder p-2" onClick={()=>document.getElementById('formFile').click()}>
-                <p>Upload Image</p>
+            <div className ="custom-file-input-holder" onClick={()=>document.getElementById('formFile').click()}>
+                {
+                  eventData.eventBannerUrl ? (
+                    <img className="custom-file-input-img" src={eventData.eventBannerUrl} alt={eventData.eventTitle} />
+                    ) : (<p className="uploadImgText">Upload Image</p>)
+                }
                 <input
                 className="custom-file-input d-none"
                 type="file"
                 id="formFile"
                 accept="image/*"
                 name="eventBanner"    
-                value={eventData.eventBanner}
+                // value={eventData.eventBanner}
                 onChange={senseEventDataChange}
                 />
             </div>
@@ -38,7 +42,10 @@ const Step5 = () => {
       <div className="col-2 d-flex justify-content-between">
         <div className="continueBtnHolder p-2 mt-2">
           <SimpleMUIButton
-            passesFunc={() => setCurrentStep(currentStep + 1)}
+            passesFunc={(e) => {
+              e.preventDefault();
+              eventData.eventBanner === '' || eventData.eventTitle === '' ? alert('Please fill out the required fields!') : setCurrentStep(currentStep + 1);
+            }}
             type="contained"
             content="Continue"
           />

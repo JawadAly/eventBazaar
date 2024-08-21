@@ -8,28 +8,40 @@ const EventsContext = ({children}) =>{
         eventTime:'',
         eventLocation:'',
         eventCapacity:'',
-        isFreeEvent: true,
+        isFreeEvent: '',
         eventStartsFrom:'',
         eventGoesUpto:'',
-        passDetails:{},
+        passDetails:[],
         eventBanner:'',
+        eventBannerUrl:'',
         eventTitle:'',
         eventDesc:'',
         eventCategory:'',
-        userName:'',
-        userPhone:'',
+        eventAdderName:'',
+        eventAdderPhone:'',
         organizerWhtsappNum:'',
         organizerEmail:'',
         organizerName:'',
     });
     const senseEventDataChange = (event) =>{
-        const name =  event.target.name;
-        const val =  event.target.value;
+        const{name,value,files} = event.target;
         setEventData((prevVal)=>{
-            return{
-                ...prevVal,
-                [name] : val
-            };
+            if(name === 'eventBanner'){
+                const incomingFile = files[0];
+                const imageUrl = URL.createObjectURL(incomingFile);
+                return{
+                    ...prevVal,
+                    [name] : files[0],
+                    eventBannerUrl : imageUrl
+                };
+            }
+            else{
+                return{
+                    ...prevVal,
+                    [name] : value
+                };
+            }
+            
         });
     }
     return(

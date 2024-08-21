@@ -12,7 +12,7 @@ const Step3 = () => {
       <h4 className="mt-4">How much space is there?</h4>
       <p className="text-secondary "><ErrorOutlineIcon/> This represents the amount of available space there is at your event</p>
       <div className="row">
-        <div className="col-md-5 col-12 mt-2">
+        <div className="col-md-5 col-12 mt-2 pe-4">
           <MUITextField 
           label="Capacity"
           type='number'
@@ -26,7 +26,10 @@ const Step3 = () => {
       <div className="col-2 d-flex justify-content-between">
         <div className="continueBtnHolder p-2 mt-2">
             <SimpleMUIButton
-            passesFunc={() => setCurrentStep(currentStep + 1)}
+            passesFunc={(e) => {
+              e.preventDefault();
+              eventData.eventCapacity === '' ? alert('Please provide the capacity of event!') : setCurrentStep(currentStep + 1);
+            }}
             type="contained"
             content="Continue"
             />

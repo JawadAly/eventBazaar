@@ -30,6 +30,7 @@ const Step6 = () => {
                         <input 
                         id="paidEvent"
                         type="radio"
+                        checked = {eventData.eventCategory === val.categName}
                         name="eventCategory"
                         value={val.categName} 
                         onChange={senseEventDataChange}
@@ -45,7 +46,10 @@ const Step6 = () => {
       <div className="col-2 d-flex justify-content-between">
         <div className="continueBtnHolder p-2 mt-2">
           <SimpleMUIButton
-            passesFunc={() => setCurrentStep(currentStep + 1)}
+            passesFunc={(e) => {
+              e.preventDefault();
+              eventData.eventDesc === '' || eventData.eventCategory === '' ? alert('Please fill out the required fields!') : setCurrentStep(currentStep + 1);
+            }}
             type="contained"
             content="Continue"
           />

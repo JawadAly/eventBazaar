@@ -12,7 +12,7 @@ const Step1 = () => {
     <>
       <h4 className="mt-4">When is it going to happen?</h4>
       <div className="row">
-        <div className="col-md-5 col-12">
+        <div className="col-md-5 col-12 pe-4">
           <MUITextField 
           label="Date"
           startAdornmentIcon={CalendarIcon} 
@@ -24,7 +24,7 @@ const Step1 = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-5 col-12">
+        <div className="col-md-5 col-12 pe-4">
           <MUITextField 
           label="Time"
           startAdornmentIcon={ClockIcon}
@@ -38,7 +38,10 @@ const Step1 = () => {
       <div className="col-2 d-flex justify-content-between">
         <div className="continueBtnHolder p-2 mt-2">
             <SimpleMUIButton
-            passesFunc={() => setCurrentStep(currentStep + 1)}
+            passesFunc={(e) => {
+              e.preventDefault();
+              eventData.eventDate === '' || eventData.eventTime === '' ? alert('Please fill out the required fields!') : setCurrentStep(currentStep + 1);
+            }}
             type="contained"
             content="Continue"
             />

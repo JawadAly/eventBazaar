@@ -42,25 +42,53 @@ const AddEvent = () =>{
                     <div className='stepperHolder w-100 p-3'>
                         <Stepper activeStep={currentStep-1} alternativeLabel orientation='horizontal'>
                             <Step>
-                                <StepLabel>DateTime</StepLabel>
+                                <StepLabel>
+                                    <span className='stepperLabels'>
+                                        DateTime
+                                    </span>
+                                </StepLabel>
                             </Step>
                             <Step>
-                                <StepLabel>Location</StepLabel>
+                                <StepLabel>
+                                    <span className='stepperLabels'>
+                                        Location
+                                    </span> 
+                                </StepLabel>
                             </Step>
                             <Step>
-                                <StepLabel>Capcity</StepLabel>
+                                <StepLabel>
+                                    <span className='stepperLabels'>
+                                        Capacity
+                                    </span> 
+                                </StepLabel>
                             </Step>
                             <Step>
-                                <StepLabel>Pricing</StepLabel>
+                                <StepLabel>
+                                    <span className='stepperLabels'>
+                                        Pricing
+                                    </span> 
+                                </StepLabel>
                             </Step>
                             <Step>
-                                <StepLabel>Name & Photo</StepLabel>
+                                <StepLabel>
+                                    <span className='stepperLabels'>
+                                        Photo & Title
+                                    </span> 
+                                </StepLabel>
                             </Step>
                             <Step>
-                                <StepLabel>Description</StepLabel>
+                                <StepLabel>
+                                    <span className='stepperLabels'>
+                                        Description
+                                    </span> 
+                                </StepLabel>
                             </Step>
                             <Step>
-                                <StepLabel>Contact</StepLabel>
+                                <StepLabel>
+                                    <span className='stepperLabels'>
+                                        Contact
+                                    </span> 
+                                </StepLabel>
                             </Step>
                         </Stepper>
                     </div>
