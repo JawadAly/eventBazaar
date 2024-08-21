@@ -19,6 +19,15 @@ const Step4 = () => {
   const sensePassChange = (e) =>{
     const{name,value} = e.target;
     setPassDetails((prevVal)=>{
+      if(name === 'passPrice' && passDetails.passFullPrice !== ''){
+        const discountPercent = ((passDetails.passFullPrice - value)/passDetails.passFullPrice)*100;  
+        const roundedDiscount = Math.round(discountPercent);
+        return{
+          ...prevVal,
+          [name] : value,
+          passDiscount: roundedDiscount
+        };
+      }
       return{
         ...prevVal,
         [name] : value
@@ -107,6 +116,7 @@ const Step4 = () => {
               <div className="d-flex align-items-center justify-content-between p-2 mt-4 pb-1">
                 <h5>Pass Details</h5>
                 <button
+                  id="modalOpener"
                   className="themeColor addPassBtn"
                   type="button"
                   data-bs-toggle="modal"
@@ -133,9 +143,9 @@ const Step4 = () => {
                         </div>
                         <div className="passDetails d-flex mt-2">
                           <p className="mb-0">
-                            <TagIcon font='small'/> {value.passFullPrice} 
+                            <TagIcon font='small'/> {value.passPrice} 
                           </p>
-                          <s className="percentage ms-3">{value.passDiscount}</s>
+                          <s className="percentage ms-3">{value.passFullPrice}</s>
                           <p className="ms-3 mb-0">
                             <ClockIcon font='small' incomingClass='themeColor' /> {value.passExpiryDate}
                           </p>
