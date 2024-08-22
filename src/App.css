@@ -714,6 +714,93 @@ padding-left: 15px;
   background-color: #FFC3D4;
   border-radius: 12px;
 }
+/* notications nav css */
+.notoficationsLi{
+  position: relative;
+}
+.notificationsCounter{
+  position: absolute;
+  bottom: 80%;
+  left: 90%;
+}
+.notoficationsLi:hover > .notificationsDropdown{
+  display: block;
+  opacity: 1;
+  animation: fadeNavNotification 0.3s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+.notificationsDropdown{
+  opacity: 0;
+  display: none;
+  position: absolute;
+  top: 130%;
+  left: 0;
+  width: max-content;
+  height: max-content;
+  background-color: #ffffff !important;
+  transition: 0.3s ease;
+}
+@keyframes fadeNavNotification {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+.navNotification{
+  width: 100%;
+  height: 60px;
+  /* background-color: #FFC3D4;   */
+  border: 1px solid lightgrey;
+  padding: 2rem 0.5rem;
+}
+.notificationImgHolder{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: relative;
+}
+.notificationImg{
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  object-fit: cover;
+}
+.notificationImgBell{
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5%;
+  left: 65%;
+  background-color: #454545;
+  color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notificationTitle{
+  font-size: 14px;
+  font-weight: 600;
+}
+.notificationEventOrganizer{
+  font-size: 8px;
+}
+.innerNotificationText{
+  font-size: 12px;
+}
+.notificationDateTime{
+  font-size: 12px;
+  color: #bc2649;
+}
+.navNotificationsSeeAllText{
+  font-size: 16px;
+  text-decoration: underline;
+  color: #bc2649;
+}
+.navNotificationsSeeAllText a{
+  color: #bc2649 !important;
+}
 /* media queries */
 .themeColor{
   color: #bc2649;
@@ -808,6 +895,10 @@ padding-left: 15px;
 }
 .stepperLabels{
   display: none;
+}
+.notoficationsLi:hover > .notificationsDropdown{
+  display: none;
+  opacity: 0;
 }
 }
 @media only screen and (max-width:576px){
