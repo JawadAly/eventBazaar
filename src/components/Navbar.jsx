@@ -6,8 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import CustomButton from './CustomMUIBtn';
 import Search from './Search';
 import { eventCategs } from '../apis/Categs'; 
-import { ProfileIcon } from './Socials';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import { BellIcon, ProfileIcon } from './Socials';
 import { eventsNotifications } from '../apis/Notifications';
 
 const Navbar = () =>{
@@ -71,39 +70,41 @@ const Navbar = () =>{
                             </div>
                         </li>
                         <li className='notoficationsLi'>
-                            <NavLink to='#'>Notifications</NavLink>
+                            <NavLink to='/eventBazaar/notifications'>Notifications</NavLink>
                             <div className='notificationsDropdown'>
                                 <div className='navNotificationsHolder w-100'>
                                 {
                                     eventsNotifications.filter((value,index)=> index < 5).map((value,index)=>{
                                         return(
-                                            <div key={index} className='navNotification d-flex justify-content-around align-items-center'>
-                                                <div className='notificationImgHolder'>
-                                                    <img className='notificationImg' src={value.backgroundImage} alt={value.eventName}/>
-                                                    <span className='notificationImgBell'>
-                                                        <NotificationsIcon fontSize='small'/>
-                                                    </span>
-                                                </div>
-                                                <div className='notificationDesc w-100 ps-3 pe-0'>
-                                                    <p className='notificationTitle mb-0 pt-2'>{value.eventName}</p>
-                                                    <p className='notificationEventOrganizer mb-0'>
-                                                        <ProfileIcon font='small'/>
-                                                        <span className='innerNotificationText ms-1'>
-                                                            {value.eventOrganizer}
+                                            <NavLink to={`/eventBazaar/events/${value.eventName}`}>
+                                                <div key={index} className='navNotification d-flex justify-content-around align-items-center'>
+                                                    <div className='notificationImgHolder'>
+                                                        <img className='notificationImg' src={value.backgroundImage} alt={value.eventName}/>
+                                                        <span className='notificationImgBell'>
+                                                            <BellIcon font='small'/>
                                                         </span>
-                                                    </p>
-                                                    <p className='text-end mb-0 notificationDateTime pb-1'>{value.eventTime} <span className='ms-1'>{value.eventDate}</span> </p>
+                                                    </div>
+                                                    <div className='notificationDesc w-100 ps-3 pe-0'>
+                                                        <p className='notificationTitle mb-0 pt-2'>{value.eventName}</p>
+                                                        <p className='notificationEventOrganizer mb-0'>
+                                                            <ProfileIcon font='small'/>
+                                                            <span className='innerNotificationText ms-1'>
+                                                                {value.eventOrganizer}
+                                                            </span>
+                                                        </p>
+                                                        <p className='text-end mb-0 notificationDateTime pb-1'>{value.eventTime} <span className='ms-1'>{value.eventDate}</span> </p>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </NavLink>
                                         );
                                     })
                                 }
                                     <p className='text-end mb-0 navNotificationsSeeAllText p-1 pe-2'>
-                                        <NavLink to='#'>See All</NavLink>
+                                        <NavLink to='/eventBazaar/notifications'>See All</NavLink>
                                     </p>
                                 </div>
                             </div>
-                            <span class="badge rounded-pill bg-danger notificationsCounter">
+                            <span className="badge rounded-pill bg-danger notificationsCounter">
                                 {eventsNotifications.length}
                                 {/* <span class="visually-hidden">unread messages</span> */}
                             </span>

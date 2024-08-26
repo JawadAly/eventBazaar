@@ -7,6 +7,10 @@ const EventsContext = ({children}) =>{
         eventDate:'',
         eventTime:'',
         eventLocation:'',
+        locationCenterCords:{
+            lat: 30.3894007,
+            lng: 69.3532207
+        },
         eventCapacity:'',
         isFreeEvent: '',
         eventStartsFrom:'',

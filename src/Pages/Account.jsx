@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import IOSSwitch from '../components/IOSswitch';
-import { ArrowNextIcon, BkMarkIcon } from '../components/Socials';
+import { ArrowNextIcon, BkMarkIcon, ProfileIcon } from '../components/Socials';
 import AddIcon from '@mui/icons-material/Add';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import { Link } from 'react-router-dom';
@@ -79,6 +79,17 @@ const Account = () =>{
                                         {/* </div> */}
                                     </div>
                                 </Link>
+                                {
+                                    profileState && 
+                                    (<Link to='/eventBazaar/myevents' className='text-decoration-none'>
+                                        <div className='profileOption p-4 d-flex align-items-center justify-content-between'>
+                                            {/* <div className='d-flex align-items-center justify-content-between'> */}
+                                                <h5 className='text-dark'>My Events</h5>
+                                                <ProfileIcon font='large' colorClass='themeColor'/>    
+                                            {/* </div> */}
+                                        </div>
+                                   </Link>)
+                                }
                                 <Link to='/eventBazaar/termsandconds' className='text-decoration-none'>
                                     <div className='profileOption p-4 d-flex align-items-center justify-content-between'>
                                         {/* <div className='d-flex align-items-center justify-content-between'> */}

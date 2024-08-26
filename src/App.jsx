@@ -27,6 +27,10 @@ import AccountChangePass from './Pages/AccountChangePass.jsx';
 import SavedEvents from './Pages/SavedEvents.jsx';
 import AddEvent from './Pages/AddEvent.jsx';
 import EventsContext from './components/EventsContext.jsx';
+import Notifications from './Pages/Notifications.jsx';
+import MyEvents from './Pages/MyEvents.jsx';
+import ListerEventView from './Pages/ListerEventView.jsx';
+import ForgotPass from './Pages/ForgotPass.jsx';
 
 const App = () =>{
   return(
@@ -41,10 +45,14 @@ const App = () =>{
           <Route exact path='/eventBazaar/contact' element={<Contact/>}/>
           <Route exact path='/eventBazaar/account' element={<Account/>}/>
           <Route exact path='/eventBazaar/savedEvents' element={<SavedEvents/>}/>
+          <Route exact path='/eventBazaar/notifications' element={<Notifications/>}/>
           <Route exact path='/eventBazaar/addEvent' element={<EventsContext> <AddEvent/> </EventsContext>}/>
+          <Route exact path='/eventBazaar/myevents' element={<MyEvents/>}/>
           <Route exact path='/eventBazaar/profilesettings' element={<ProfileSettings/>}/>
           <Route exact path='/eventBazaar/changepassword' element={<AccountChangePass/>}/>
+          <Route exact path='/eventBazaar/forgotpassword' element={<ForgotPass/>}/>
           <Route exact path='/eventBazaar/events/:eventName' element={<EventView/>}/>
+          <Route exact path='/eventBazaar/listerEvents/:eventName' element={<ListerEventView/>}/>
           <Route exact path='/eventBazaar/termsandconds' element={<TermsAndConds/>}/>
           <Route exact path='/eventBazaar/privacypolicy' element={<PrivacyPolicy/>}/>
           <Route path='/eventBazaar/*' element={<Error/>}/>

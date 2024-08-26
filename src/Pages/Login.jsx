@@ -75,7 +75,7 @@ const Login = () =>{
                                     </div>
                                     <div className='inputHolder p-2 mb-2'>
                                         <p className='text-end'>
-                                            <Link to='#' className='officialTextColor text-decoration-none'>Forgot Password</Link>
+                                            <Link to='/eventBazaar/forgotpassword' className='officialTextColor text-decoration-none'>Forgot Password</Link>
                                         </p>
                                         <Button type='submit' variant="contained" style={{backgroundColor:'#bc2649',width:'100%'}}>Sign In</Button>
                                     </div>

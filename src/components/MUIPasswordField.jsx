@@ -8,7 +8,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LockIcon from '@mui/icons-material/Lock';
 
-const MUIPasswordField = ({ val, changeEvent, name, label}) =>{
+const MUIPasswordField = ({ val, changeEvent, name, label, isIconColored}) =>{
     const [showPassword, setShowPassword] = useState(false);
   
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -16,6 +16,9 @@ const MUIPasswordField = ({ val, changeEvent, name, label}) =>{
     const handleMouseDownPassword = (event) => {
       event.preventDefault();
     };
+    const iconColor = {
+      color: '#bc2649'
+    }
     return(
       <>
         <FormControl sx={{ m: 1}} variant="outlined" fullWidth>
@@ -35,12 +38,12 @@ const MUIPasswordField = ({ val, changeEvent, name, label}) =>{
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
-                  {showPassword ?  <Visibility /> : <VisibilityOff />}
+                  {showPassword ?  <Visibility style={isIconColored ? iconColor : null} /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
             }
             startAdornment={
-              <InputAdornment position='start'>
+              <InputAdornment position='start' style={isIconColored ? iconColor : null}>
                 <LockIcon/>
               </InputAdornment>
             }

@@ -17,6 +17,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import GoogleIcon from '@mui/icons-material/Google';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 export const TwittIcon = (props) =>{
     return <TwitterIcon fontSize={props.font}/>;
@@ -40,7 +41,7 @@ export const TagIcon = (props) =>{
     return <LocalOfferOutlinedIcon fontSize={props.font} className='themeColor'/>;
 }
 export const ProfileIcon = (props) =>{
-    return <AssignmentIndOutlinedIcon fontSize={props.font}/>;
+    return <AssignmentIndOutlinedIcon fontSize={props.font} className={props.colorClass}/>;
 }
 export const LocationIcon = (props) =>{
     return <LocationOnOutlinedIcon fontSize={props.font}/>;
@@ -74,4 +75,7 @@ export const ArrowNextIcon = (props) =>{
 }
 export const BkMarkIcon = (props) =>{
     return <BookmarksIcon className='themeColor' fontSize={props.font}/>;
+}
+export const BellIcon = (props) =>{
+    return <NotificationsIcon className={props.colorClass} fontSize={props.font}/>;
 }

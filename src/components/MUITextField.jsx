@@ -33,7 +33,10 @@ import InputAdornment from "@mui/material/InputAdornment";
 // export default MUITextField;
 
 
-const MUITextField = ({ val, changeEvent, name, type, label, startAdornmentIcon: StartAdornmentIcon ,readonly,isMultiline}) => {
+const MUITextField = ({ val, changeEvent, name, type, label, startAdornmentIcon: StartAdornmentIcon ,isIconColored,readonly,isMultiline}) => {
+  const iconColor = {
+    color: '#bc2649'
+  }
     return (
       <>
         <FormControl sx={{ m: 1}} variant="outlined" fullWidth>
@@ -50,8 +53,8 @@ const MUITextField = ({ val, changeEvent, name, type, label, startAdornmentIcon:
             readOnly = {readonly}
             startAdornment={
               StartAdornmentIcon && (
-              <InputAdornment position="start">
-                <StartAdornmentIcon />
+              <InputAdornment position="start" style={isIconColored ? iconColor : null}>
+                <StartAdornmentIcon/>
               </InputAdornment>
             )
             }
