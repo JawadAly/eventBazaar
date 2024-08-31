@@ -1,17 +1,51 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 // incoming events api data
 import { events } from '../apis/EventsData';
 import EventCard from './EventCard';
-import { CalendarIcon, ClockIcon, ProfileIcon, TagIcon, } from './Socials';
-import { fetchCategsList } from '../apis/ListsService';
+import { CalendarIcon, ClockIcon, LocationIcon, ProfileIcon, TagIcon, } from './Socials';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Categories from './Categories';  
 import { Link, NavLink } from 'react-router-dom';
+import MUIProgress from './MUIProgress';
+import ModalWindow from './MUIModelWindow';
+import MUITextField from './MUITextField';
+import SearchIcon from '@mui/icons-material/Search';
+import { jsonCityList } from '../apis/CitiesList';
 
 const Events = () =>{
-    const[allEventsEnable,allEventsEnableSet] = useState(3);
+    const[allEventsEnable,allEventsEnableSet] = useState(15);
+    const[currentLocation,setCurrentLocation] = useState('karachi');
+    const[incomingEvents,setIncomingEvents] = useState([]);
+    const[searchItem,setSearchItem] = useState('');
+    const[citiesData,setCitiesData] = useState(jsonCityList);
+    const[loadingState,setLoadingState] = useState(true);
+    const fetchIncomingEvents = async () =>{
+        try{
+            const resp = await axios.get(`/api/v1/eventify/event/list?filter=${currentLocation}`);
+            if(resp.data.success){
+                setIncomingEvents(resp.data.data.events);
+            }
+            // console.log(resp.data);
+            // setLoadingState(false);
+        }
+        catch(error){
+            console.log(`Error at apihandlerfunc in events component. Error:${error}`);
+        }
+        finally{
+            //turning of the loading state
+            setLoadingState(false);
+        }
+    }
+    useEffect(()=>{
+        fetchIncomingEvents();
+    },[currentLocation]);
+    const filteredData = citiesData.filter(item =>
+        item.name.toLowerCase().includes(searchItem.toLowerCase())
+    );
+
     const settings = {
         dots: true,
         infinite: true,
@@ -53,33 +87,6 @@ const Events = () =>{
             }
     ]
       };
-    // const[eventCategs,setEventCategs] = useState([
-    //     'Concert',
-    //     'Conference',
-    //     'Seminar',
-    //     'Party',
-    //     'Festival',
-    //     'Sports',
-    //     'Comedy',
-    //     'Stage Show',
-    //     'Qawali'
-    // ]);
-    // const getCategsList = async() =>{
-    //     try{
-    //         const resp = await fetchCategsList();
-    //         setEventCategs(()=>{
-    //             return[
-    //                 ...resp
-    //             ];
-    //         });
-    //     }
-    //     catch(error){
-    //         alert(error);
-    //     }
-    // }
-    // useEffect(()=>{
-    //     getCategsList();
-    // },[]);
     return(
         <>
             <section className='eventsSection pb-5'>
@@ -122,17 +129,70 @@ const Events = () =>{
                     </div>
                     {/* featured events section */}
 
-                    <h3 className='eventsSecHeading ps-3 mb-3'>Coming Up Next</h3>
-                    <div className='cardsHolder p-3 mb-5'>
-                        {events.filter((value,index)=> index < allEventsEnable).map((value,index)=>{
-                            return(
-                                <EventCard key={index} id={value.eventId} name={value.eventName} date={value.eventDate} time={value.eventTime} location={value.location} cost={value.price} bgImg={value.backgroundImage}/>
-                            );
-                        })}   
+                    <div className='d-flex align-items-center justify-content-between mb-2 pe-3'>
+                        <h3 className='eventsSecHeading ps-3 '>Near You</h3>
+                        <div 
+                        className='currentLocationHolder'
+                        type="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        >
+                            <LocationIcon colorClass='themeColor'/> {currentLocation}
+                        </div>
                     </div>
+                    
+                    {
+                        loadingState ? (<div className='text-center w-100 p-4'>
+                                <MUIProgress/>
+                                </div>):
+                        (incomingEvents.length === 0 ? (
+                            <div className='text-center w-100 p-4'>
+                                {/* <MUIProgress/> */}
+                                No Events Here....
+                            </div>
+                        ) : (
+                            <div className='cardsHolder p-3 mb-5'>
+                                {incomingEvents.filter((value,index)=> index < allEventsEnable).map((value,index)=>{
+                                    return(
+                                        <EventCard key={index} id={value.id} name={value.name} dateTime={value.date_time} organizer={value.contact.organization} cost={value.price_type} bgImg={value.images[0]}/>
+                                    );
+                                })}   
+                            </div>
+                        )
+                        )
+                    }
                     <div className='eventPagesData'>
-                        <p className='text-center'>Showing <span className='themeColor'>{allEventsEnable}</span> out <span className='themeColor'>{events.length}</span> Events  {allEventsEnable != 3 ? <NavLink onClick={()=> allEventsEnableSet(3)} style={{color:'#bc2649'}}>See Less</NavLink> : <NavLink onClick={()=> allEventsEnableSet(events.length)} style={{color:'#bc2649'}}>See All</NavLink>}</p>
+                        <p className='text-center'>Showing <span className='themeColor'>{allEventsEnable}</span> out <span className='themeColor'>{incomingEvents.length}</span> Events  {allEventsEnable != 15 ? <NavLink onClick={()=> allEventsEnableSet(12)} style={{color:'#bc2649'}}>See Less</NavLink> : <NavLink onClick={()=> allEventsEnableSet(incomingEvents.length)} style={{color:'#bc2649'}}>See All</NavLink>}</p>
                     </div>
+                    <ModalWindow>
+                        <div className="modal-body p-4 pe-5">
+                          <MUITextField
+                            label='Search for a city'
+                            startAdornmentIcon={SearchIcon}
+                            val={searchItem}
+                            changeEvent={(e)=>setSearchItem(e.target.value)}
+                          />
+                          <div className='citiesListHolder'>
+                            <ul className='citiesListHolderUL'>
+                            {
+                                filteredData.map((value,index)=>{
+                                    return(
+                                        <li 
+                                        key={index}
+                                        onClick={()=>{
+                                            setSearchItem(value.name);
+                                            setCurrentLocation(value.name);
+                                        }}
+                                        >{value.name}</li>
+                                    ); 
+                                        
+                                })
+                            }
+                            
+                            </ul>
+                          </div>
+                        </div>
+                    </ModalWindow>
                 </div>
             </section>
         </>

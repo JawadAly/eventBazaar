@@ -44,7 +44,7 @@ export const ProfileIcon = (props) =>{
     return <AssignmentIndOutlinedIcon fontSize={props.font} className={props.colorClass}/>;
 }
 export const LocationIcon = (props) =>{
-    return <LocationOnOutlinedIcon fontSize={props.font}/>;
+    return <LocationOnOutlinedIcon fontSize={props.font} className={props.colorClass}/>;
 }
 export const MailIcon = (props) =>{
     return <EmailIcon fontSize={props.font}/>;

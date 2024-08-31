@@ -393,6 +393,21 @@ padding-left: 15px;
   color: #000;
 }
 /* events section css */
+.currentLocationHolder{
+  background-color: #FFC3D4;
+  padding: 5px 20px;
+  border-radius: 8px;
+  text-transform: capitalize;
+}
+.citiesListHolderUL{
+  list-style-type: none;
+  padding-left: 18px
+}
+.citiesListHolderUL > li{
+  padding-top: 15px;
+  border-bottom: 1px solid lightgray;
+  cursor: pointer;
+}
 /* common css for headings */
 .eventsSecHeading{
   font-weight: 500; 
@@ -414,13 +429,13 @@ padding-left: 15px;
   background-color: #000 ;
 }
 .eventsSecHeading:nth-of-type(3)::before{
-  left: 19% ;
+  left: 9% ;
   background-color: #bc2649;
 }
 .cardsHolder{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 50px 30px;
+  grid-gap: 60px 30px;
 }
 .myCard{
   width: 100%;
@@ -436,7 +451,9 @@ padding-left: 15px;
   background-size: cover;
 }
 .eventDateTime{
-  width: 105px;
+  /* width: 105px; */
+  width: fit-content;
+  padding: 2px 3px;
   height: 50px;
   background-color: lightslategrey;
   font-size: small;
@@ -811,6 +828,7 @@ padding-left: 15px;
   position: relative;
 }
 .notificationImg{
+  border: 1px solid lightgray;
   width: inherit;
   height: inherit;
   border-radius: inherit;

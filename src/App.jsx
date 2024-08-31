@@ -31,6 +31,8 @@ import Notifications from './Pages/Notifications.jsx';
 import MyEvents from './Pages/MyEvents.jsx';
 import ListerEventView from './Pages/ListerEventView.jsx';
 import ForgotPass from './Pages/ForgotPass.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () =>{
   return(
@@ -59,6 +61,19 @@ const App = () =>{
         </Routes>
       <Footer/>
       <Preloader/>
+      {/* reactToasity */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+        />
     </>
   );
 }

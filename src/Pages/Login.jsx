@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import MUIPasswordField from '../components/MUIPasswordField';
 import MUITextField from '../components/MUITextField';
-import { Link} from 'react-router-dom';
+import { json, Link,useNavigate} from 'react-router-dom';
 import Button from '@mui/material/Button';
 import PersonIcon from '@mui/icons-material/Person';
 import IconButton from '@mui/material/IconButton';
 import { signIn } from '../apis/AuthService';
 import { GogleIcon, PhoneIcon } from '../components/Socials';
+import { toast, Zoom } from 'react-toastify';
+import { getCentralStoreData } from '../components/MainContext';
 
 const Login = () =>{
     const[loginData,setLoginData] = useState({
@@ -24,24 +26,47 @@ const Login = () =>{
         });
         
     }
-    // signIn handelr to api
-    // const signin = async (incomingUsrCredentials) =>{
-    //     try{
-    //         const resp = await signIn(incomingUsrCredentials);
-    //         alert('SignIn successful',resp);
-    //     }
-    //     catch(error){
-    //         alert(`SignIn Error at apihandler at signIn component. Details: ${error}`);
-    //     }
-    // }
+    const{getAllNotificaton} = getCentralStoreData();
+    const navigate = useNavigate();
+    // signIn handler to api
+    const signin = async (incomingUsrCredentials) =>{
+        try{
+            const resp = await signIn(incomingUsrCredentials);
+            const {success,message} = resp;
+            if(success && message === '' && resp.data.user){
+                const {first_name,last_name,auth_token} = resp.data.user;
+                //creatingUserName
+                const userName = first_name.charAt(0)+"."+last_name;
+                // saving token and some usefulInfoin local storage
+                localStorage.setItem('authUserSpecs',JSON.stringify({
+                    authToken : auth_token,
+                    usrName: userName
+                }));
+                //fetching notifications only on login
+                await getAllNotificaton(); 
+
+                toast.success('Success!',{
+                    transition:Zoom
+                });
+                //navigation here
+                navigate('/eventBazaar/');
+            }
+            else{
+                toast.error(resp.message);
+            }
+        }
+        catch(error){
+            console.log(`SignIn Error at apihandler at signIn component. Details: ${error.message}`);
+        }
+    }
     const submitLoginData = (e) =>{
         e.preventDefault();
         if(loginData.userEmail === '' || loginData.userPass === ''){
-            alert('Please fill out the required fields');
+            toast.error('Please fill out the required fields');
         }
         else{
-            console.log(loginData.userEmail,loginData.userPass);
-            // signin(loginData);
+            // console.log(loginData.userEmail,loginData.userPass);
+            signin(loginData);
         }
     }
     return(
