@@ -26,7 +26,7 @@ const Login = () =>{
         });
         
     }
-    const{getAllNotificaton} = getCentralStoreData();
+    const{getAllNotificaton,getAllEvents} = getCentralStoreData();
     const navigate = useNavigate();
     // signIn handler to api
     const signin = async (incomingUsrCredentials) =>{
@@ -42,8 +42,9 @@ const Login = () =>{
                     authToken : auth_token,
                     usrName: userName
                 }));
-                //fetching notifications only on login
-                await getAllNotificaton(); 
+                //fetching notifications and allEvents only on login
+                getAllNotificaton(); 
+                getAllEvents();
 
                 toast.success('Success!',{
                     transition:Zoom

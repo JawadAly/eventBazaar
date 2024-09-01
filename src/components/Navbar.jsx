@@ -12,7 +12,7 @@ import { getCentralStoreData } from "./MainContext";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
-  const { isLoggedIn,getLoggedInPerson, signout, eventCategs,notification,separateDateAndTime } = getCentralStoreData();
+  const { isLoggedIn,getLoggedInPerson, signout, eventCategs,notification,separateDateAndTime,limitWords,notificationState } = getCentralStoreData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,14 +28,6 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const limitWords = (text, wordLimit) => {
-    const wordsArray = text.split(' ');  
-    if (wordsArray.length <= wordLimit) {
-        return text;  
-    }
-    return wordsArray.slice(0, wordLimit).join(' ') + '...';  
-    };
     
   return (
     <>
@@ -98,7 +90,7 @@ const Navbar = () => {
                   <NavLink to="/eventBazaar/notifications">
                     Notifications
                   </NavLink>
-                  {isLoggedIn() && (  
+                  {(isLoggedIn() && notificationState) && (  
                     <>
                         <div className="notificationsDropdown">
                             <div className="navNotificationsHolder w-100">

@@ -8,16 +8,30 @@ import { toast } from 'react-toastify';
 import MUIProgress from "../components/MUIProgress";
 
 const Notifications = () => {
-  const{isLoggedIn,notification,separateDateAndTime} = getCentralStoreData();
+  const{isLoggedIn,notification,separateDateAndTime,limitWords,notificationState} = getCentralStoreData();
   const navigate = useNavigate();
-  const [hasShownToast, setHasShownToast] = useState(false);
+  // const[screenWidth,setScreenWidth] = useState(window.innerWidth);
+  
+
+  // const limitWords = (text, wordLimit) => {
+  //     const wordsArray = text.split(' ');  
+  //     if (wordsArray.length <= wordLimit) {
+  //         return text;  
+  //     }
+  //     return wordsArray.slice(0, wordLimit).join(' ') + '...';  
+  //     };
+    
+
   useEffect(()=>{
     if(!isLoggedIn()){
         toast.error('You must be logged in in-order to continue!');
         navigate('/eventBazaar/login');
-        setHasShownToast(true);
     }
-  },[isLoggedIn,navigate,hasShownToast]);
+    if(!notificationState){
+      toast.error('Your notification state is off kindly turn it on from account settings!');
+      navigate('/eventBazaar/account');
+    }
+  },[isLoggedIn,navigate]);
   
     return (
       <>
@@ -40,17 +54,17 @@ const Notifications = () => {
                     {
                 notification.map((value, index) => {
                 return (
-                  <Link to={`/eventBazaar/events/${value.eventName}`} className="text-decoration-none">
+                  <Link to={`/eventBazaar/events/${value.name}`} className="text-decoration-none">
                       <NotificationCard
                           key={index}
                           id={value.id}
-                          name={value.name}
+                          name={window.innerWidth<=576 ?  limitWords(value.name,2) : limitWords(value.name,3)}
                           date={separateDateAndTime(value.date_time).date}
                           time={separateDateAndTime(value.date_time).time}
                           // location={event}
                           cost={value.price_type}
                           bgImg={value.images[0]}
-                          eventOrg={value.contact.name}
+                          eventOrg={window.innerWidth<=576 ? limitWords(value.contact.name,2):limitWords(value.contact.name,3) }
                       />
                   </Link>
                 );

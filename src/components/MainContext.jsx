@@ -3,12 +3,16 @@ import { fetchCategs } from '../apis/CategoriesApi';
 import { fetchNotifications } from '../apis/NotificationsApi';
 // import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
+import { fetchAllEvents } from '../apis/EventsApi';
 
 const centeralStore = createContext();
 
 const MainContext = ({children}) =>{
     const [eventCategs,setEventCategs] = useState([]);
     const [notification,setNotification] = useState([]);
+    const[currentLocation,setCurrentLocation] = useState('karachi');
+    const[allEvents,setAllEvents] = useState([]);
+    const[notificationState,setNotificationState] = useState(true);
     const[token,setToken] = useState('');
     const getAllCateg = async () =>{
         try{
@@ -27,18 +31,32 @@ const MainContext = ({children}) =>{
             const resp = await fetchNotifications(bearerToken);
             if(resp.success && resp.message === ''){
                 setNotification(resp.data.events);
-                console.log(resp.data.events);
+                // console.log(resp.data.events);
             }
         }
         catch(error){
             console.log(`Error at apihandlerfunc for notification in maincontext component. Error:${error}`);
         }
     }
+    const getAllEvents = async () =>{
+        try{
+            const resp = await fetchAllEvents(getAuthToken(),currentLocation);
+            if(resp.success && resp.message === ''){
+                setAllEvents(resp.data.events);
+            }
+            // console.log(resp.data.events);
+        }
+        catch(error){
+            console.log(`Error at apihandlerfunc for all events in maincontext component. Error:${error}`);
+        }
+    }
     
     useEffect(() => {
         getAllCateg();
-        isLoggedIn() ? getAllNotificaton(): null;
-        // 
+        if(isLoggedIn()){
+            getAllNotificaton();
+            getAllEvents();
+        }
     },[]);
 
     const isLoggedIn = () =>{
@@ -74,7 +92,7 @@ const MainContext = ({children}) =>{
         // clearing local storage data
         if(isLoggedIn()){
             localStorage.removeItem('authUserSpecs');
-            navigate('/');
+            navigate('/eventBazaar/');
         }
     }
     const separateDateAndTime = (dateTime) =>{
@@ -91,9 +109,16 @@ const MainContext = ({children}) =>{
         });
         return {date,time};
     }
+    const limitWords = (text, wordLimit) => {
+        const wordsArray = text.split(' ');  
+        if (wordsArray.length <= wordLimit) {
+            return text;  
+        }
+        return wordsArray.slice(0, wordLimit).join(' ') + '...';  
+        };
     return(
         <>
-            <centeralStore.Provider value={{isLoggedIn,getLoggedInPerson,signout,eventCategs,getAllNotificaton,notification,separateDateAndTime}}>
+            <centeralStore.Provider value={{isLoggedIn,getLoggedInPerson,signout,eventCategs,getAllNotificaton,notification,separateDateAndTime,limitWords,getAllEvents,allEvents,currentLocation,setCurrentLocation,notificationState,setNotificationState}}>
                 {children}
             </centeralStore.Provider>
         </>

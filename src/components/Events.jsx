@@ -14,10 +14,12 @@ import ModalWindow from './MUIModelWindow';
 import MUITextField from './MUITextField';
 import SearchIcon from '@mui/icons-material/Search';
 import { jsonCityList } from '../apis/CitiesList';
+import { getCentralStoreData } from './MainContext';
 
 const Events = () =>{
+    const{currentLocation,setCurrentLocation} = getCentralStoreData();
     const[allEventsEnable,allEventsEnableSet] = useState(15);
-    const[currentLocation,setCurrentLocation] = useState('karachi');
+    // const[currentLocation,setCurrentLocation] = useState('karachi');
     const[incomingEvents,setIncomingEvents] = useState([]);
     const[searchItem,setSearchItem] = useState('');
     const[citiesData,setCitiesData] = useState(jsonCityList);
@@ -27,6 +29,7 @@ const Events = () =>{
             const resp = await axios.get(`/api/v1/eventify/event/list?filter=${currentLocation}`);
             if(resp.data.success){
                 setIncomingEvents(resp.data.data.events);
+                // console.log(resp.data.data.events);
             }
             // console.log(resp.data);
             // setLoadingState(false);

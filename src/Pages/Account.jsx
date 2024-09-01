@@ -1,20 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import IOSSwitch from '../components/IOSswitch';
 import { ArrowNextIcon, BkMarkIcon, ProfileIcon } from '../components/Socials';
 import AddIcon from '@mui/icons-material/Add';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import { getCentralStoreData } from '../components/MainContext';
+import { toast,Zoom} from 'react-toastify';
 
 const Account = () =>{
     const[profileState,setProfileState] = useState(false);
-    const[notificationState,setNotificationState] = useState(true);
+    // const[notificationState,setNotificationState] = useState(true);
+    const{isLoggedIn,notificationState,setNotificationState,signout} = getCentralStoreData();
     const changeProfileType = () =>{
         setProfileState(!profileState);
+        toast.success(profileState ? 'Lister Mode turned off!' : 'Lister Mode turned on!',{
+            transition:Zoom
+        });
     }
     const changeNotificationsState = () =>{
         setNotificationState(!notificationState);
+        toast.success(notificationState ? 'Notifications turned off!' : 'Notifications turned on!',{
+            transition:Zoom
+        });
     }
+    const navigate = useNavigate();
+    useEffect(()=>{
+        if(!isLoggedIn()){
+            toast.error('You must be logged in in-order to continue!');
+            navigate('/eventBazaar/login');   
+            return;
+        }
+    },[isLoggedIn()]);
     return(
         <>
             <section className='accountSection'>
@@ -23,7 +40,12 @@ const Account = () =>{
                         <h3 className='accountHeading'>Account</h3>
                         <div className='accountBtnsArea'>
                             {profileState && <Link to='/eventBazaar/addEvent'><button className='btn rounded-pill signOutBtn me-2'>Add Event</button></Link>}
-                            <button className='btn rounded-pill signOutBtn'>Sign out</button>
+                            <button 
+                            className='btn rounded-pill signOutBtn'
+                            onClick={()=>{
+                                signout();
+                            }}
+                            >Sign out</button>
                         </div>
                     </div>
                     <hr/>

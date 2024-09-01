@@ -6,11 +6,11 @@ import MainContext from "./components/MainContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <StrictMode>
+  // <StrictMode>
       <BrowserRouter>
         <MainContext>
           <App />
         </MainContext>
       </BrowserRouter>
-  </StrictMode>
+  // </StrictMode>
 );
