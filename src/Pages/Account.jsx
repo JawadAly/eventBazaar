@@ -11,7 +11,7 @@ import { toast,Zoom} from 'react-toastify';
 const Account = () =>{
     const[profileState,setProfileState] = useState(false);
     // const[notificationState,setNotificationState] = useState(true);
-    const{isLoggedIn,notificationState,setNotificationState,signout} = getCentralStoreData();
+    const{isLoggedIn,notificationState,setNotificationState,signout,getShortName,getLoggedInPerson} = getCentralStoreData();
     const changeProfileType = () =>{
         setProfileState(!profileState);
         toast.success(profileState ? 'Lister Mode turned off!' : 'Lister Mode turned on!',{
@@ -52,10 +52,10 @@ const Account = () =>{
                     <div className='personalInfoSection pb-5'>
                         <div className='upperInfoContainer'>
                             <div className='userInitialsHolder d-flex align-items-center justify-content-center'>
-                                <h1 className='userInitials'>JS</h1>
+                                <h1 className='userInitials'>{isLoggedIn() && getShortName()}</h1>
                             </div>
-                            <h4 className='userAccName text-center mt-2 mb-0'>Jawad S</h4>
-                            <p className='userAccEmail'>jawad@gmail.com</p>
+                            <h4 className='userAccName text-center mt-2 mb-0'>{getLoggedInPerson()}</h4>
+                            {/* <p className='userAccEmail'>jawad@gmail.com</p> */}
                         </div>
                         <div className='lowerInfoContainer'>
                             <h3 className='personalInfoHeading mt-4'>Personal Information</h3>

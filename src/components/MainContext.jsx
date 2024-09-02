@@ -76,6 +76,13 @@ const MainContext = ({children}) =>{
         }
         return null;
     }
+    const getShortName = () => {
+        const name = getLoggedInPerson();
+        const parts = name.split('.');
+        const initials = parts.map(part => part.charAt(0));
+        return initials.join('');
+    }
+    
 
     const getAuthToken = () =>{
         if(isLoggedIn()){
@@ -118,14 +125,13 @@ const MainContext = ({children}) =>{
         };
     return(
         <>
-            <centeralStore.Provider value={{isLoggedIn,getLoggedInPerson,signout,eventCategs,getAllNotificaton,notification,separateDateAndTime,limitWords,getAllEvents,allEvents,currentLocation,setCurrentLocation,notificationState,setNotificationState}}>
+            <centeralStore.Provider value={{isLoggedIn,getLoggedInPerson,signout,eventCategs,getAllNotificaton,notification,separateDateAndTime,limitWords,getAllEvents,allEvents,currentLocation,setCurrentLocation,notificationState,setNotificationState,navigate,getShortName}}>
                 {children}
             </centeralStore.Provider>
         </>
     );
 }
 export default MainContext;
-// export {centeralStore};
 
 export const getCentralStoreData = () =>{
     return useContext(centeralStore);
