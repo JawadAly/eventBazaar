@@ -3,7 +3,7 @@ import { CalendarIcon, ClockIcon, ProfileIcon, TagIcon } from "./Socials";
 import { Link } from "react-router-dom";
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
-const ListerEventCard = ({ name, date, time, location, cost, bgImg, eventOrg}) => {
+const ListerEventCard = ({ name, date, time, location, cost, bgImg, eventOrg,approvalStatus}) => {
   const bgImgStyle = {
     backgroundImage: `url(${bgImg})`,
   };
@@ -21,9 +21,13 @@ const ListerEventCard = ({ name, date, time, location, cost, bgImg, eventOrg}) =
                     <ClockIcon font="small" /> {time}
                     </span>
                 </div>
-                <div className="eventApprovalStatus themeColor p-1">
-                    <p className="mb-0"><WarningAmberIcon fontSize="small"/> Pending Approval</p>
-                </div>
+                {
+                  !approvalStatus ? (
+                    <div className="eventApprovalStatus themeColor p-1">
+                        <p className="mb-0"><WarningAmberIcon fontSize="small"/> Pending Approval</p>
+                    </div>
+                  ) : null
+                }
             </div>
           <div className="locationAndPricingArea w-100 d-flex align-items-center justify-content-between">
             <span className="locationArea d-flex align-items-center justify-content-center p-1">

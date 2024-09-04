@@ -4,6 +4,8 @@ import { fetchNotifications } from '../apis/NotificationsApi';
 // import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
 import { fetchAllEvents } from '../apis/EventsApi';
+import { signOut } from '../apis/AuthService';
+import { toast,Zoom } from 'react-toastify';
 
 const centeralStore = createContext();
 
@@ -47,7 +49,7 @@ const MainContext = ({children}) =>{
             // console.log(resp.data.events);
         }
         catch(error){
-            console.log(`Error at apihandlerfunc for all events in maincontext component. Error:${error}`);
+            console.log(`Error at apihandlerfunc for all events in maincontext component. Error:${error.message}`);
         }
     }
     
@@ -95,9 +97,31 @@ const MainContext = ({children}) =>{
 
     const navigate = useNavigate();
     
+    const signOutHandler = async() =>{
+        try{
+            const authToken = getAuthToken();
+            const resp = await signOut(authToken);
+            if(resp){
+                const{success,message} = resp;
+                if(success){
+                    localStorage.removeItem('authUserSpecs');
+                    toast.success('Successfully Signed out!',{transition:Zoom});
+                    navigate('/eventBazaar/');
+                }
+                else{
+                    toast.error(message);
+                }
+            }
+        }
+        catch(error){
+            console.log(`Error at signOutHandlerfunc in maincontext component. Error:${error.message}`);
+        }
+    }
+
     const signout = () =>{
         // clearing local storage data
         if(isLoggedIn()){
+            signOutHandler();
             localStorage.removeItem('authUserSpecs');
             navigate('/eventBazaar/');
         }

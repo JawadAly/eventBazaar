@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams,useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { events } from '../apis/EventsData';
 import Error from './Error';
 import { CalendarIcon, ChatIcon, ClockIcon, GroupIcon, LocationIcon, MailIcon, MoreTags, PhoneIcon, ReduIcon, WhtsappIcon } from '../components/Socials';
@@ -33,9 +33,8 @@ const EventView = () =>{
             }
         });
     }
-    const{allEvents,separateDateAndTime,isLoggedIn} = getCentralStoreData();
+    const{allEvents,separateDateAndTime,isLoggedIn,navigate} = getCentralStoreData();
     const {eventName} = useParams();
-    const navigate = useNavigate();
     useEffect(()=>{
         if(!isLoggedIn()){
             toast.error('You must be logged in in-order to continue!');
