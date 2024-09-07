@@ -5,14 +5,39 @@ import Error from './Error';
 import { CalendarIcon, ChatIcon, ClockIcon, GroupIcon, LocationIcon, MailIcon, MoreTags, PhoneIcon, ReduIcon, WhtsappIcon } from '../components/Socials';
 import 'animate.css';
 import { getCentralStoreData } from '../components/MainContext';
-import { toast } from 'react-toastify';
+import { toast,Zoom } from 'react-toastify';
+import { markInterestedOrGoingOrBookmarkOrUnbookmark } from '../apis/EventsApi';
+import ToggleButton from '@mui/material/ToggleButton';
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
 
 const EventView = () =>{
     const[event,setEvent] = useState(null);
+    const [selected, setSelected] = useState(false);
     const[userInterest,setUserInterest] = useState({
         amInterested : false,
         amGoing : false
     });
+    const changePreference = async (incomingPreference) =>{
+        try{
+            const prefObj = {
+                "preference": incomingPreference,
+            };
+            const resp = await markInterestedOrGoingOrBookmarkOrUnbookmark(event.id,prefObj);
+            if(resp){
+                const{success,message} = resp;
+                if(success){
+                    toast.success(`Event successfully marked as ${incomingPreference}!`,{transition:Zoom});
+                }
+                else{
+                    toast.error(message);
+                }
+            }
+
+        }
+        catch(error){
+            console.log(`changePreference Error at apihandler at event view page. Details: ${error.message}`);
+        }
+    }
     const detectInterestChange = (event) =>{
         // console.log(event.target.id);
         // console.log(event.target.value);
@@ -20,12 +45,16 @@ const EventView = () =>{
         const value = event.target.value;
         setUserInterest(()=>{
             if(id === 'amInterested'){
+                // api contact to mark this event interested for user
+                changePreference("interested");
                 return{
                     amInterested:value,
                     amGoing:false
                 };
             }
             else{
+                // api contact to mark this event going for user
+                changePreference("going");
                 return{
                     amInterested:false,
                     amGoing:value
@@ -33,6 +62,34 @@ const EventView = () =>{
             }
         });
     }
+    const handleBookmarkStatusChange = async (bookmarkPref) =>{
+        try{
+            const prefObj = {
+                "bookmarked": bookmarkPref
+            };
+            const resp = await markInterestedOrGoingOrBookmarkOrUnbookmark(event.id,prefObj);
+            if(resp){
+                const{success,message} = resp;
+                if(success){
+                    toast.success(!selected ? `Event added to saved collections of your profile!`:`Event removed from saved collections of your profile!`,{transition:Zoom});
+                }
+                else{
+                    toast.error(message);
+                }
+            }
+        }
+        catch(error){
+            console.log(`handleBookmarkStatusChange Error at apihandler at event view page. Details: ${error.message}`);
+        }
+    }
+    // const changeBookmarkPref = () =>{
+    //     if(selected){
+    //         setSelected(false);
+    //     }
+    //     else{
+    //         setSelected(true);
+    //     }
+    // }
     const{allEvents,separateDateAndTime,isLoggedIn,navigate} = getCentralStoreData();
     const {eventName} = useParams();
     useEffect(()=>{
@@ -61,7 +118,21 @@ const EventView = () =>{
                                 <img className='eventViewImg img-fluid' src={event.images[0]} alt={event.name}/>
                             </div>
                             <div className='eventViewDetails'>
-                                <p className='eventViewDate mb-1'><CalendarIcon /> {separateDateAndTime(event.date_time).date }</p>
+                                <div className='d-flex align-items-center justify-content-between mb-2 flex-wrap'>
+                                    <p className='eventViewDate mb-1'><CalendarIcon /> {separateDateAndTime(event.date_time).date }</p>
+                                    <ToggleButton
+                                    value="check"
+                                    selected={selected}
+                                    onChange={()=>{
+                                        const newSelected = !selected;
+                                        setSelected(newSelected);
+                                        handleBookmarkStatusChange(newSelected);
+                                    }}
+                                    >
+                                        <BookmarksIcon className={selected && 'themeColor'}/>
+                                    </ToggleButton>
+                                </div>
+
                                 <div className='d-flex align-items-center justify-content-between mb-2 flex-wrap'>
                                     <h1 className='eventViewNameHeading'>{event.name}</h1>
                                     <span className='eventViewPrice d-flex align-items-center justify-content-center flex-wrap p-1 animate_animated animate__heartBeat'>{event.price > 0 ? 'Rs.' : ''} {event.price}</span>
