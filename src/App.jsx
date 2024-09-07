@@ -33,6 +33,7 @@ import ListerEventView from './Pages/ListerEventView.jsx';
 import ForgotPass from './Pages/ForgotPass.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SignupRedirection from './Pages/SignupRedirection.jsx';
 
 const App = () =>{
   return(
@@ -50,6 +51,7 @@ const App = () =>{
           <Route exact path='/eventBazaar/notifications' element={<Notifications/>}/>
           <Route exact path='/eventBazaar/addEvent' element={<EventsContext> <AddEvent/> </EventsContext>}/>
           <Route exact path='/eventBazaar/myevents' element={<MyEvents/>}/>
+          <Route exact path='/eventBazaar/signupRedirect' element={<SignupRedirection/>}/>
           <Route exact path='/eventBazaar/profilesettings' element={<ProfileSettings/>}/>
           <Route exact path='/eventBazaar/changepassword' element={<AccountChangePass/>}/>
           <Route exact path='/eventBazaar/forgotpassword' element={<ForgotPass/>}/>

@@ -81,13 +81,3 @@ const Notifications = () => {
   
 };
 export default Notifications;
-{/* <EventCard
-                  key={index}
-                  id={value.eventId}
-                  name={value.eventName}
-                  date={value.eventDate}
-                  time={value.eventTime}
-                  location={value.location}
-                  cost={value.price}
-                  bgImg={value.backgroundImage}
-                /> */}

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { toast,Zoom } from "react-toastify";
+import { verifyUserEmailOrPass } from "../apis/AuthService";
+import CompleteLoader from "../components/CompleteLoader";
 
-const ForgotPassStep2 = ({ currentStep, setCurrentStep }) => {
+const ForgotPassStep2 = ({ currentStep, setCurrentStep ,email ,loading ,setLoading}) => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const handleOtpChange = (e, indx) => {
     const { value, nextSibling, previousSibling } = e.target;
@@ -14,11 +17,11 @@ const ForgotPassStep2 = ({ currentStep, setCurrentStep }) => {
       if (value && nextSibling) {
         nextSibling.focus();
       }
-      setTimeout(() => {
-        if(updatedOtp.every(value=>value!='')){
-          document.getElementById('continueBtn').click();
-        }
-      }, 0); 
+      // setTimeout(() => {
+      //   if(updatedOtp.every(value=>value!='')){
+      //     document.getElementById('continueBtn').click();
+      //   }
+      // }, 0); 
     }
   };
   const hangleBackSpaceBehaviour = (e) =>{
@@ -27,13 +30,53 @@ const ForgotPassStep2 = ({ currentStep, setCurrentStep }) => {
           previousSibling.focus();
       }
   } 
+  const verifyOtp = async (incomingVerifObj) =>{
+    try{
+      setLoading(true);
+      const resp = await verifyUserEmailOrPass(incomingVerifObj);
+      if(resp){
+        const{success,message} = resp;
+        if(success){
+          console.log('verification success!');
+          toast.success(message,{transition:Zoom});
+          //redirection logic
+          setCurrentStep(currentStep+1);
+        }
+        else{
+          toast.error(message);
+        }
+      }
+    }
+    catch(error){
+      console.log(`verifyOtp Error at apihandler at forgotpassstep2 component. Details: ${error.message}`);
+    }
+    finally{
+      setLoading(false);
+    }
+  }
+
   const submitOtp = () =>{
-    const finalOtp = otp.join('');
-    alert(finalOtp);
-    setCurrentStep(currentStep+1);
+    if(otp.every(value=>value!='')){
+      const finalOtp = otp.join('');
+      // api contact logic here
+      const apiCodeVerifObj = {
+        "type": "password", 
+        "email": email,
+        "code": finalOtp
+      }
+      // console.log(apiCodeVerifObj);
+      // api contact
+      verifyOtp(apiCodeVerifObj);
+    }
+    else{
+      toast.error('Please provide complete 6 digit OTP!');
+    }
   }
   return (
     <>
+    {
+      loading && <CompleteLoader/>
+    }
       <h3 className="mt-4 mb-4">Verification Code</h3>
       <hr />
       <p className="text-secondary mt-4 mb-1">
@@ -62,7 +105,7 @@ const ForgotPassStep2 = ({ currentStep, setCurrentStep }) => {
       </div>
       <div className="d-flex justify-content-center col-md-7 col-12 mt-4">
           <button 
-          id="continueBtn"
+          // id="continueBtn"
           className="btn btn-warning continueBtn"
           onClick={submitOtp}
           >

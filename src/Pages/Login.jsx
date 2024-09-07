@@ -9,6 +9,7 @@ import { signIn } from '../apis/AuthService';
 import { GogleIcon, PhoneIcon } from '../components/Socials';
 import { toast, Zoom } from 'react-toastify';
 import { getCentralStoreData } from '../components/MainContext';
+import CompleteLoader from '../components/CompleteLoader';
 
 const Login = () =>{
     const[loginData,setLoginData] = useState({
@@ -26,38 +27,44 @@ const Login = () =>{
         });
         
     }
-    const{getAllNotificaton,getAllEvents} = getCentralStoreData();
+    const{getAllNotificaton,getAllEvents,loadingState,setLoadingState} = getCentralStoreData();
     const navigate = useNavigate();
     // signIn handler to api
     const signin = async (incomingUsrCredentials) =>{
         try{
+            setLoadingState(true);
             const resp = await signIn(incomingUsrCredentials);
-            const {success,message} = resp;
-            if(success && message === '' && resp.data.user){
-                const {first_name,last_name,auth_token} = resp.data.user;
-                //creatingUserName
-                const userName = first_name.charAt(0)+"."+last_name;
-                // saving token and some usefulInfoin local storage
-                localStorage.setItem('authUserSpecs',JSON.stringify({
-                    authToken : auth_token,
-                    usrName: userName
-                }));
-                //fetching notifications and allEvents only on login
-                getAllNotificaton(); 
-                getAllEvents();
+            if(resp){
+                const {success,message} = resp;
+                if(success && message === '' && resp.data.user){
+                    const {first_name,last_name,auth_token} = resp.data.user;
+                    //creatingUserName
+                    const userName = first_name.charAt(0)+"."+last_name;
+                    // saving token and some usefulInfoin local storage
+                    localStorage.setItem('authUserSpecs',JSON.stringify({
+                        authToken : auth_token,
+                        usrName: userName
+                    }));
+                    //fetching notifications and allEvents only on login
+                    getAllNotificaton(); 
+                    getAllEvents();
 
-                toast.success('Success!',{
-                    transition:Zoom
-                });
-                //navigation here
-                navigate('/eventBazaar/');
-            }
-            else{
-                toast.error(resp.message);
+                    toast.success('Success!',{
+                        transition:Zoom
+                    });
+                    //navigation here
+                    navigate('/eventBazaar/');
+                }
+                else{
+                    toast.error(message);
+                }
             }
         }
         catch(error){
             console.log(`SignIn Error at apihandler at signIn component. Details: ${error.message}`);
+        }
+        finally{
+            setLoadingState(false);
         }
     }
     const submitLoginData = (e) =>{
@@ -75,6 +82,9 @@ const Login = () =>{
             <section className='loginSection'>
                 <div className='container'>
                     <div className='flexer d-flex align-items-center justify-content-center py-5'>
+                    {
+                        loadingState && <CompleteLoader/>
+                    }
                         <div className='loginCard'>
                             <div className='circle'>
                                 <h3 className='text-white circleText'>Event Bazaar</h3>

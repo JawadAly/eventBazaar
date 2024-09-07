@@ -15,6 +15,7 @@ const MainContext = ({children}) =>{
     const[currentLocation,setCurrentLocation] = useState('karachi');
     const[allEvents,setAllEvents] = useState([]);
     const[notificationState,setNotificationState] = useState(true);
+    const[loadingState,setLoadingState] = useState(false);
     const[token,setToken] = useState('');
     const getAllCateg = async () =>{
         try{
@@ -149,7 +150,7 @@ const MainContext = ({children}) =>{
         };
     return(
         <>
-            <centeralStore.Provider value={{isLoggedIn,getLoggedInPerson,signout,eventCategs,getAllNotificaton,notification,separateDateAndTime,limitWords,getAllEvents,allEvents,currentLocation,setCurrentLocation,notificationState,setNotificationState,navigate,getShortName}}>
+            <centeralStore.Provider value={{isLoggedIn,getLoggedInPerson,signout,eventCategs,getAllNotificaton,notification,separateDateAndTime,limitWords,getAllEvents,allEvents,currentLocation,setCurrentLocation,notificationState,setNotificationState,navigate,getShortName,loadingState,setLoadingState}}>
                 {children}
             </centeralStore.Provider>
         </>

@@ -9,6 +9,9 @@ export const signUp = async (userSignUpData) =>{
                 "Content-Type":"application/json"
             }
         });
+        if(resp.status >= 400){
+            throw new Error(resp.statusText);
+        }
         return resp.data;
     }
     catch(error){
@@ -29,6 +32,9 @@ export const signIn = async (userCredentials) =>{
                 "Content-Type":"application/json"
             }
         });
+        if(resp.status >= 400){
+            throw new Error(resp.statusText);
+        }
         // console.log(resp.data);
         return resp.data;
     }
@@ -46,6 +52,9 @@ export const signOut = async (authtoken) =>{
                 "Authorization" : `Bearer ${authtoken}`
             }
         });
+        if(resp.status >= 400){
+            throw new Error(resp.statusText);
+        }
         return resp.data;
     }
     catch(error){
@@ -62,6 +71,9 @@ export const verifyUserEmailOrPass = async (verifObj) =>{
                 "Content-Type":"application/json"
             }
         });
+        if(resp.status >= 400){
+            throw new Error(resp.statusText);
+        }
         return resp.data;
     }
     catch(error){
@@ -69,4 +81,42 @@ export const verifyUserEmailOrPass = async (verifObj) =>{
         throw error;
     }
 
+}
+
+export const sendVerification = async (verifEmailOrPass) =>{
+    try{
+        const jsonData = JSON.stringify(verifEmailOrPass);
+        const resp = await axios.post('/api/v1/eventify/user/verify/send',jsonData,{
+            headers:{
+                "Content-Type":"application/json"
+            }
+        });
+        if(resp.status >= 400){
+            throw new Error(resp.statusText);
+        }
+        return resp.data;
+    }
+    catch(error){
+        console.log(`Unexpected error occured at sendVerificationFunction. Details: ${error.message}`);
+        throw error;
+    }
+}
+
+export const handleForgotPass = async (forgotPassObj) =>{
+    try{
+        const jsonData = JSON.stringify(forgotPassObj);
+        const resp = await axios.post('/api/v1/eventify/user/forgot-password',jsonData,{
+            headers:{
+                "Content-Type":"application/json"
+            }
+        });
+        if(resp.status >= 400){
+            throw new Error(resp.statusText);
+        }
+        return resp.data;
+    }
+    catch(error){
+        console.log(`Unexpected error occured at handleForgotPassFunction. Details: ${error.message}`);
+        throw error;
+    }
 }

@@ -10,7 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { pink } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
-import { signUp,verifyUserEmailOrPass } from '../apis/AuthService';
+import { sendVerification, signUp,verifyUserEmailOrPass } from '../apis/AuthService';
 import { toast,Zoom } from 'react-toastify';
 import { getCentralStoreData } from '../components/MainContext';
 import MUIModelWindow from '../components/MUIModelWindow';
@@ -32,7 +32,7 @@ const Signup = () =>{
     const[otpEmail,setOtpEmail] = useState('');
     const[passwordMatchState,setPasswordMatchState] = useState('');
     const[continueVerif,setContinueVerif] = useState(false);
-    const{navigate} = getCentralStoreData();
+    const{navigate,getAllNotificaton,getAllEvents} = getCentralStoreData();
     const senseChange = (event) =>{
         const name = event.target.name;
         // working for both checkbox and textfields
@@ -56,8 +56,23 @@ const Signup = () =>{
             if(resp){   
                 const{success,message,data} = resp;
                 if(success && message === 'Verified successfully' && data.user){
+                    // closing modalWindow
+                    document.getElementById('modalCloseBtn').click();
+                    //performing some necessary login operations
+                    const {first_name,last_name,auth_token} = data.user;
+                    const userName = first_name.charAt(0)+"."+last_name;
+                    // saving token and some usefulInfoin local storage
+                    localStorage.setItem('authUserSpecs',JSON.stringify({
+                        authToken : auth_token,
+                        usrName: userName
+                    }));
+                    //fetching notifications and allEvents only on login
+                    await getAllNotificaton(); 
+                    await getAllEvents(); 
+
                     toast.success(message,{transition:Zoom});
                     //navigation here after verification
+                    navigate('/eventBazaar/signupRedirect');
 
                 }
                 else{
@@ -106,7 +121,7 @@ const Signup = () =>{
             }
         }
         catch(error){
-            console.log(`SignUp Error at apihandler at signUp component. Details: ${error}`);
+            console.log(`SignUp Error at apihandler at signUp component. Details: ${error.message}`);
         }
     }
     const submitRegisterData = (e) =>{
@@ -166,7 +181,7 @@ const Signup = () =>{
           previousSibling.focus();
       }
   } 
-  const submitOtp = async () =>{
+  const submitOtp = () =>{
         if(otp.every(value=>value!='')){
             const finalOtp = otp.join('');
             toast.success(finalOtp);
@@ -176,11 +191,32 @@ const Signup = () =>{
                 "email": otpEmail,
                 "code": finalOtp
             };
-            await handleOtpSubmission(otpObj);
+            handleOtpSubmission(otpObj);
         }
         else{
             toast.error('Please provide complete 6 digit OTP.');
         }
+  }
+  const resendVerification = async () =>{
+    try{
+        const verifObj = {
+            "type": "email",
+            "email": otpEmail
+        };
+        const resp = await sendVerification(verifObj);
+        if(resp){
+            const{success,message} = resp;
+            if(success){
+                toast.success(message,{transition:Zoom});
+            }
+            else{
+                toast.error(message);
+            }
+        }
+    }
+    catch(error){
+        console.log(`resendVerification Error at apihandler at signUp component. Details: ${error.message}`);
+    }
   }
 //   useEffect(()=>{
 //     toast.success('Type Phone without country code as default is set',{transition:Zoom});
@@ -314,6 +350,13 @@ const Signup = () =>{
                     <MUIModelWindow>
                         <div className="modal-header">
                             <h4 className="modal-title text-center w-100 themeColor">Verification</h4>
+                            <button
+                                id='modalCloseBtn'
+                                type="button"
+                                className="btn-close d-none"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
                         </div>
                         <div className="modal-body p-2">
                             <p className='text-center mb-2' style={{fontSize:'15px'}}>We've sent you an email on <span className='themeColor'>{`<${otpEmail}>`}</span> to verify it's really you please check your inbox and enter the code</p>
@@ -332,7 +375,7 @@ const Signup = () =>{
                                     );
                                 })}
                             </div>
-                            <p className='text-center mb-2' style={{fontSize:'13px'}}>Did not get a code? <span className='themeColor'>Resend</span> </p>
+                            <p className='text-center mb-2' style={{fontSize:'13px'}}>Did not get a code? <span className='themeColor' style={{cursor:'pointer'}} onClick={resendVerification}>Resend</span> </p>
                             <div className='p-2'>
                                 <Button id='continueBtn' onClick={submitOtp} type='button' variant='contained' style={{backgroundColor:'#bc2649',width:'100%'}}>Verify</Button>
                             </div>
