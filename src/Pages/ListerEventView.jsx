@@ -76,7 +76,7 @@ const ListerEventView = () => {
       }
   },[pAddedEvents,eventName]);
 
-  if (errorState) {
+  if (errorState){
     return (
         <section className="eventViewSec">
             <div className="container">

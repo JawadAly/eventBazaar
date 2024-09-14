@@ -4,6 +4,7 @@ import Slider from "react-slick";
 // import {eventCategs} from '../apis/Categs';
 import { getCentralStoreData } from "./MainContext";
 import MUIProgress from "./MUIProgress";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   const {eventCategs} = getCentralStoreData();
@@ -50,22 +51,26 @@ const Categories = () => {
   };
   return (
     <>
-      <h3 className="eventsSecHeading ps-3 mb-5">Categories</h3>
+      <section className='categsSection mt-5'>
+        <div className='container'>
+        <h3 className="eventsSecHeading ps-3 mb-5">Categories</h3>
       {/* <div className='categHolder p-3 pb-5 mb-5'> */}
       {eventCategs && eventCategs.length !== 0 ? (
         <Slider {...settings} style={{ marginBottom: "60px" }}>
           {eventCategs.map((value, index) => {
             return (
               <>
-                <div className="categFlexer d-flex align-items-center justify-content-center pb-5">
-                  <div
-                    key={index}
-                    className="myCateg d-flex align-items-center justify-content-center"
-                  >
-                    {/* <CategIcons categicon={value.categIconName} /> */}
-                    <p className="categName">{value.name}</p>
+                <Link to={`/eventBazaar/categories/${value.name}`}>
+                  <div className="categFlexer d-flex align-items-center justify-content-center pb-5">
+                    <div
+                      key={index}
+                      className="myCateg d-flex align-items-center justify-content-center"
+                    >
+                      {/* <CategIcons categicon={value.categIconName} /> */}
+                      <p className="categName text-dark">{value.name}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </>
             );
           })}
@@ -76,6 +81,8 @@ const Categories = () => {
         </div>
       )}
       {/* </div> */}
+        </div>
+      </section>
     </>
   );
 };

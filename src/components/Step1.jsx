@@ -6,7 +6,7 @@ import { stepContext } from "./EventsContext";
 import { Link } from "react-router-dom";
 
 const Step1 = () => {
-  const { currentStep, setCurrentStep, eventData, setEventData ,senseEventDataChange} =
+  const { currentStep, setCurrentStep, eventData, setEventData ,senseEventDataChange,toast} =
     useContext(stepContext);
   return (
     <>
@@ -40,7 +40,7 @@ const Step1 = () => {
             <SimpleMUIButton
             passesFunc={(e) => {
               e.preventDefault();
-              eventData.eventDate === '' || eventData.eventTime === '' ? alert('Please fill out the required fields!') : setCurrentStep(currentStep + 1);
+              eventData.eventDate === '' || eventData.eventTime === '' ? toast.error('Please fill out the required fields!') : setCurrentStep(currentStep + 1);
             }}
             type="contained"
             content="Continue"

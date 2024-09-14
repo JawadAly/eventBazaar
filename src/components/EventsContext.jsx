@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { toast,Zoom } from 'react-toastify';
 
 const stepContext = createContext();
 const EventsContext = ({children}) =>{
@@ -50,7 +51,7 @@ const EventsContext = ({children}) =>{
     }
     return(
         <>
-            <stepContext.Provider value={{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange}}>
+            <stepContext.Provider value={{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange,toast,Zoom}}>
                 {children}
             </stepContext.Provider>
         </>

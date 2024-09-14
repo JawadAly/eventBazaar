@@ -2,9 +2,28 @@ import React, { useContext } from "react";
 import MUITextField from "../components/MUITextField";
 import SimpleMUIButton from "./SimpleMUIButton";
 import { stepContext } from "./EventsContext";
+import {addEvent} from '../apis/EventsApi';
 
 const Step7 = () => {
-  const { currentStep, setCurrentStep, eventData, senseEventDataChange } = useContext(stepContext);
+  const { currentStep, setCurrentStep, eventData, senseEventDataChange, toast ,Zoom } = useContext(stepContext);
+
+  const performEventAddition = async (incomingEvent) =>{
+    try{
+      const resp = await addEvent(incomingEvent);
+      if(resp){
+        const{success,message} = resp;
+        if(success){
+          console.log(resp);
+        }
+        else{
+          toast.error(message);
+        }
+      }
+    }
+    catch(error){
+      console.log(`performEventAddition Error at apihandler at step7 component. Details: ${error.message}`);
+    }
+  }
 
   return (
     <>
@@ -81,7 +100,7 @@ const Step7 = () => {
                eventData.organizerWhtsappNum === ''||
                eventData.organizerEmail === '' ||
                eventData.organizerName === ''
-              ) ? alert('Please fill out the required fields!') : console.log(eventData);
+              ) ? toast.error('Please fill out the required fields!') : performEventAddition(eventData);
             }}
             type="contained"
             content="Publish"

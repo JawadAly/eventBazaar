@@ -56,25 +56,25 @@ const Footer = () => {
             <div className="brandSocials d-flex align-items-center">
               <ul>
                 <li>
-                  <NavLink to="#" className="text-dark">
+                  <a href='https://www.facebook.com/share/oY6ZYjwnrCBmHCTR/?mibextid=qi2Omg' className="text-dark">
                     <FacebIcon font="large" />
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink to="#" className="text-dark">
+                  <a href='https://www.instagram.com/event.bazaar/' className="text-dark">
                     <InstaIcon font="large" />
-                  </NavLink>
+                  </a>
                 </li>
                 <li>
-                  <NavLink to="#" className="text-dark">
+                  <a href='https://www.linkedin.com/company/event-bazaarpk/' className="text-dark">
                     <LinkedIcon font="large" />
-                  </NavLink>
+                  </a>
                 </li>
-                <li>
-                  <NavLink to="#" className="text-dark">
+                {/* <li>
+                  <a href='#' className="text-dark">
                     <TwittIcon font="large" />
-                  </NavLink>
-                </li>
+                  </a>
+                </li> */}
               </ul>
             </div>
           </div>

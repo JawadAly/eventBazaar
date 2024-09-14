@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, useEffect} from 'react';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -10,9 +10,11 @@ import Step5 from '../components/Step5';
 import Step6 from '../components/Step6';
 import Step7 from '../components/Step7';
 import { stepContext } from '../components/EventsContext';
+import { getCentralStoreData } from '../components/MainContext';
 
 const AddEvent = () =>{
-    const{currentStep,setCurrentStep} = useContext(stepContext);
+    const{currentStep,setCurrentStep,toast} = useContext(stepContext);
+    const{isLoggedIn,navigate} = getCentralStoreData();
     const renderStep = (step) =>{
         switch(step){
             case 1:
@@ -33,6 +35,13 @@ const AddEvent = () =>{
                 return null;
         }
     }
+    useEffect(()=>{
+        if(!isLoggedIn()){
+            toast.error('You must be logged in in-order to continue!');
+            navigate('/eventBazaar/login');   
+            return;
+        }
+    },[]);
     return(
         <>
             <section className='addEventSection'>

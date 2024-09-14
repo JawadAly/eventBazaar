@@ -4,7 +4,7 @@ import SimpleMUIButton from "./SimpleMUIButton";
 import { stepContext } from "./EventsContext";
 
 const Step5 = () => {
-    const{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange} = useContext(stepContext);
+    const{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange,toast} = useContext(stepContext);
     
   return (
     <>
@@ -44,7 +44,7 @@ const Step5 = () => {
           <SimpleMUIButton
             passesFunc={(e) => {
               e.preventDefault();
-              eventData.eventBanner === '' || eventData.eventTitle === '' ? alert('Please fill out the required fields!') : setCurrentStep(currentStep + 1);
+              eventData.eventBanner === '' || eventData.eventTitle === '' ? toast.error('Please fill out the required fields!') : setCurrentStep(currentStep + 1);
             }}
             type="contained"
             content="Continue"

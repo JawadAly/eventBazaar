@@ -12,37 +12,37 @@ const Infobar = () =>{
                             <p>
                                 <MailIcon font='small'/>
                                 <span className='ms-2'>
-                                    info@event-bazaar.pk
+                                    easyevent.digital@gmail.com
                                 </span>
                                 
                             </p>
                             <p className='ms-2'>
                                 <PhoneIcon font='small'/>
                                 <span className='ms-2'>
-                                    +92 3463654223
+                                    +92 3032162790
                                 </span>
                                 
                             </p>
                         </div>
                         <div className='topBarSocials'>
                             <ul className='list'>
-                                <li>
+                                {/* <li>
                                     <a href='#'>
                                         <TwittIcon font='small'/>
                                     </a>
-                                </li>
+                                </li> */}
                                 <li>
-                                    <a href='#'>
+                                    <a href='https://www.facebook.com/share/oY6ZYjwnrCBmHCTR/?mibextid=qi2Omg'>
                                         <FacebIcon font='small'/>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href='#'>
+                                    <a href='https://www.linkedin.com/company/event-bazaarpk/'>
                                         <LinkedIcon font='small'/>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href='#'>
+                                    <a href='https://www.instagram.com/event.bazaar/'>
                                         <InstaIcon font='small'/>
                                     </a>
                                 </li>

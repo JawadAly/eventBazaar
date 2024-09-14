@@ -6,7 +6,7 @@ import { stepContext } from "./EventsContext";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 const Step3 = () => {
-    const{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange} = useContext(stepContext);
+    const{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange,toast} = useContext(stepContext);
   return (
     <>
       <h4 className="mt-4">How much space is there?</h4>
@@ -28,7 +28,7 @@ const Step3 = () => {
             <SimpleMUIButton
             passesFunc={(e) => {
               e.preventDefault();
-              eventData.eventCapacity === '' ? alert('Please provide the capacity of event!') : setCurrentStep(currentStep + 1);
+              eventData.eventCapacity === '' ? toast.error('Please provide the capacity of event!') : setCurrentStep(currentStep + 1);
             }}
             type="contained"
             content="Continue"

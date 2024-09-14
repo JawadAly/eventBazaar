@@ -12,7 +12,7 @@ import { getCentralStoreData } from "./MainContext";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
-  const { isLoggedIn,getLoggedInPerson, signout, eventCategs,notification,separateDateAndTime,limitWords,notificationState } = getCentralStoreData();
+  const { isLoggedIn,getLoggedInPerson, signout, eventCategs,notification,separateDateAndTime,limitWords,notificationState,mainSearch,setMainSearch } = getCentralStoreData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +59,7 @@ const Navbar = () => {
             <div className="sideBar pt-2">
               <ul className="navUl d-flex align-items-center">
                 <li>
-                  <Search />
+                  <Search value={mainSearch} onChange={(e)=>setMainSearch(e.target.value)}/>
                 </li>
                 <li>
                   <NavLink to="/eventBazaar/">Home</NavLink>
@@ -80,7 +80,11 @@ const Navbar = () => {
                       <ul className="categDropUl">
                         {eventCategs &&
                           eventCategs.map((value, index) => {
-                            return <li key={index}>{value.name}</li>;
+                            return (
+                              <NavLink to={`/eventBazaar/categories/${value.name}`}>
+                                <li key={index}>{value.name}</li>
+                              </NavLink>
+                            );
                           })}
                       </ul>
                     </div>
@@ -150,9 +154,12 @@ const Navbar = () => {
                     </>
                   )}
                 </li>
-                <li>
-                  <NavLink to="/eventBazaar/login">Account</NavLink>
-                </li>
+                {
+                  !isLoggedIn() &&(
+                  <li>
+                    <NavLink to="/eventBazaar/login">Account</NavLink>
+                  </li>)
+                }
                 {isLoggedIn() && (
                   <div className="dropdown">
                     <button

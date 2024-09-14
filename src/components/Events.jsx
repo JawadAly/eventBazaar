@@ -17,15 +17,16 @@ import { jsonCityList } from '../apis/CitiesList';
 import { getCentralStoreData } from './MainContext';
 
 const Events = () =>{
-    const{currentLocation,setCurrentLocation} = getCentralStoreData();
+    const{currentLocation,setCurrentLocation,setErrorState} = getCentralStoreData();
     const[allEventsEnable,allEventsEnableSet] = useState(15);
     // const[currentLocation,setCurrentLocation] = useState('karachi');
     const[incomingEvents,setIncomingEvents] = useState([]);
     const[searchItem,setSearchItem] = useState('');
     const[citiesData,setCitiesData] = useState(jsonCityList);
-    const[loadingState,setLoadingState] = useState(true);
+    const[loadingState,setLoadingState] = useState(false);
     const fetchIncomingEvents = async () =>{
         try{
+            setLoadingState(true);
             const resp = await axios.get(`/api/v1/eventify/event/list?filter=${currentLocation}`);
             if(resp.data.success){
                 setIncomingEvents(resp.data.data.events);
@@ -36,6 +37,7 @@ const Events = () =>{
         }
         catch(error){
             console.log(`Error at apihandlerfunc in events component. Error:${error}`);
+            setErrorState(true);
         }
         finally{
             //turning of the loading state
@@ -92,10 +94,10 @@ const Events = () =>{
       };
     return(
         <>
-            <section className='eventsSection pb-5'>
+            <section className='eventsSection pb-5 mt-4'>
                 <div className='container'>
                 {/* categories section */}
-                <Categories/>
+                {/* <Categories/> */}
                 {/* categories section */}
                 {/* featured events section */}
                     <h3 className='eventsSecHeading ps-3 mb-3' style={{color:'#bc2649'}}>Featured</h3>
@@ -132,7 +134,7 @@ const Events = () =>{
                     </div>
                     {/* featured events section */}
 
-                    <div className='d-flex align-items-center justify-content-between mb-2 pe-3'>
+                    <div className='d-flex align-items-center justify-content-between mb-2 pe-3 mt-4'>
                         <h3 className='eventsSecHeading ps-3 '>Near You</h3>
                         <div 
                         className='currentLocationHolder'
@@ -149,10 +151,12 @@ const Events = () =>{
                                 <MUIProgress/>
                                 </div>):
                         (incomingEvents.length === 0 ? (
-                            <div className='text-center w-100 p-4'>
-                                {/* <MUIProgress/> */}
-                                No Events Here....
-                            </div>
+                            <div className="eventViewSec pb-5 mb-3">
+                                <div className='errorSvgHolder pt-4'> 
+                                    <embed type="image/svg+xml" src="/eventBazaar/svgs/ic_empty_search.svg" className='emptySvg'/>
+                                    <p className='text-center themeColor'>No events to show!</p>
+                                </div>
+                            </div>                    
                         ) : (
                             <div className='cardsHolder p-3 mb-5'>
                                 {incomingEvents.filter((value,index)=> index < allEventsEnable).map((value,index)=>{
@@ -168,6 +172,13 @@ const Events = () =>{
                         <p className='text-center'>Showing <span className='themeColor'>{allEventsEnable}</span> out <span className='themeColor'>{incomingEvents.length}</span> Events  {allEventsEnable != 15 ? <NavLink onClick={()=> allEventsEnableSet(12)} style={{color:'#bc2649'}}>See Less</NavLink> : <NavLink onClick={()=> allEventsEnableSet(incomingEvents.length)} style={{color:'#bc2649'}}>See All</NavLink>}</p>
                     </div>
                     <ModalWindow>
+                    <button
+                        id="passModalCloseBtn"
+                        type="button"
+                        className="btn-close d-none"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
                         <div className="modal-body p-4 pe-5">
                           <MUITextField
                             label='Search for a city'
@@ -185,6 +196,7 @@ const Events = () =>{
                                         onClick={()=>{
                                             setSearchItem(value.name);
                                             setCurrentLocation(value.name);
+                                            document.getElementById('passModalCloseBtn').click();
                                         }}
                                         >{value.name}</li>
                                     ); 

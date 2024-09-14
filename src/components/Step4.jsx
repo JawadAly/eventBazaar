@@ -6,7 +6,6 @@ import { CalendarIcon, ClockIcon, TagIcon } from "./Socials";
 import ModalWindow from "./MUIModelWindow";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import EditNoteIcon from "@mui/icons-material/EditNote";
-// import MUIModelWindow from "./MUIModelWindow";
 
 const Step4 = () => {
   const [passDetails, setPassDetails] = useState({
@@ -47,6 +46,7 @@ const Step4 = () => {
         ),
       };
     });
+    toast.success('Pass Deleted!',{transition:Zoom});
   };
   
   const updatePass = (updationKey) => {
@@ -69,6 +69,8 @@ const Step4 = () => {
     eventData,
     setEventData,
     senseEventDataChange,
+    toast,
+    Zoom
   } = useContext(stepContext);
   // const [open, setOpen] = useState(false);
   return (
@@ -179,11 +181,20 @@ const Step4 = () => {
                       <p className="mb-0">
                         <TagIcon font="small" /> {value.passPrice}
                       </p>
-                      <s className="percentage ms-3">{value.passFullPrice}</s>
-                      <p className="ms-3 mb-0">
-                        <ClockIcon font="small" incomingClass="themeColor" />{" "}
-                        {value.passExpiryDate}
-                      </p>
+                      {
+                        value.passPrice ? 
+                        <s className="percentage ms-3">{value.passFullPrice}</s> 
+                        : <p className="percentage ms-3 mb-0">{value.passFullPrice}</p>
+                      }
+                      
+                      {
+                        value.passExpiryDate && (
+                          <p className="ms-3 mb-0">
+                            <ClockIcon font="small" incomingClass="themeColor" />{" "}
+                            {value.passExpiryDate}
+                          </p>
+                        )
+                      }
                     </div>
                   </div>
                 );
@@ -194,6 +205,7 @@ const Step4 = () => {
             <div className="modal-header">
               <h5 className="modal-title text-center w-100">Pass Details</h5>
               <button
+                id="passModalCloseBtn"
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
@@ -259,14 +271,21 @@ const Step4 = () => {
                     type="button"
                     style={{ backgroundColor: "#bc2649" }}
                     onClick={() => {
-                      setEventData((prevVal) => {
-                        return {
-                          ...prevVal,
-                          passDetails: [...prevVal.passDetails, passDetails],
-                        };
-                      });
-                      alert("Pass added successfully");
-                    }}
+                      if(passDetails.passTitle === '' || passDetails.passFullPrice === ''){
+                        toast.error('Please add title and price for the pass!');
+                      }
+                      else{
+                          setEventData((prevVal) => {
+                            return {
+                              ...prevVal,
+                              passDetails: [...prevVal.passDetails, passDetails],
+                            };
+                          });
+                          toast.success("Pass added successfully",{transition:Zoom});
+                          //closing model
+                          document.getElementById('passModalCloseBtn').click();
+                        }}
+                      }
                   >
                     Add Pass
                   </button>
@@ -288,7 +307,7 @@ const Step4 = () => {
                           passDetails:updatedPassArray
                         };
                       });
-                      alert('Pass updated successfully!');
+                      toast.success('Pass updated successfully!',{transition:Zoom});
                     }}
                   >
                     Update Pass
@@ -306,18 +325,23 @@ const Step4 = () => {
             passesFunc={(e) => {
               e.preventDefault();
               if (eventData.isFreeEvent === "") {
-                alert("Please decide weather your event is free or paid!");
+                toast.error("Please decide weather your event is free or paid!");
               } else {
                 if (eventData.isFreeEvent === "false") {
                   if (
                     eventData.eventStartsFrom === "" ||
                     eventData.eventGoesUpto === ""
                   ) {
-                    alert(
+                    toast.error(
                       "Please provide lower and upper price for your event"
                     );
                   } else {
-                    setCurrentStep(currentStep + 1);
+                    if(eventData.passDetails.length === 0){
+                      toast.error('You need to add atleast one type of pass for paid events.');
+                    }
+                    else{
+                      setCurrentStep(currentStep + 1);
+                    }
                   }
                 } else {
                   setCurrentStep(currentStep + 1);
@@ -340,3 +364,5 @@ const Step4 = () => {
   );
 };
 export default Step4;
+
+

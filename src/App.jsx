@@ -34,6 +34,8 @@ import ForgotPass from './Pages/ForgotPass.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SignupRedirection from './Pages/SignupRedirection.jsx';
+import CategEventsView from './Pages/CategEventsView.jsx';
+import 'react-phone-input-2/lib/material.css';
 
 const App = () =>{
   return(
@@ -56,6 +58,7 @@ const App = () =>{
           <Route exact path='/eventBazaar/changepassword' element={<AccountChangePass/>}/>
           <Route exact path='/eventBazaar/forgotpassword' element={<ForgotPass/>}/>
           <Route exact path='/eventBazaar/events/:eventName' element={<EventView/>}/>
+          <Route exact path='/eventBazaar/categories/:eventCategName' element={<CategEventsView/>}/>
           <Route exact path='/eventBazaar/listerEvents/:eventName' element={<ListerEventView/>}/>
           <Route exact path='/eventBazaar/termsandconds' element={<TermsAndConds/>}/>
           <Route exact path='/eventBazaar/privacypolicy' element={<PrivacyPolicy/>}/>

@@ -22,12 +22,7 @@ export const signUp = async (userSignUpData) =>{
 
 export const signIn = async (userCredentials) =>{
     try{
-        const jsonData = JSON.stringify({
-            "email":userCredentials.userEmail,
-            "password":userCredentials.userPass
-        });
-        // const resp = await axios.post(`${baseUrl}/user/sign-in`,jsonData,{
-        const resp = await axios.post('/api/v1/eventify/user/sign-in',jsonData,{
+        const resp = await axios.post('/api/v1/eventify/user/sign-in',userCredentials,{
             headers:{
                 "Content-Type":"application/json"
             }

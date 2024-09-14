@@ -18,6 +18,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import BadgeIcon from '@mui/icons-material/Badge';
 
 export const TwittIcon = (props) =>{
     return <TwitterIcon fontSize={props.font}/>;
@@ -78,4 +79,7 @@ export const BkMarkIcon = (props) =>{
 }
 export const BellIcon = (props) =>{
     return <NotificationsIcon className={props.colorClass} fontSize={props.font}/>;
+}
+export const CardIcon = (props) =>{
+    return <BadgeIcon className={props.colorClass} fontSize={props.font}/>;
 }

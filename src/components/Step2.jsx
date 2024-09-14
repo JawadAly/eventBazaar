@@ -19,6 +19,7 @@ const Step2 = () => {
     eventData,
     setEventData,
     senseEventDataChange,
+    toast
   } = useContext(stepContext);
   // working for google map api
 
@@ -147,7 +148,7 @@ const Step2 = () => {
             passesFunc={(e) => {
               e.preventDefault();
               eventData.eventLocation === ""
-                ? alert("Please provide the location of the event!")
+                ? toast.error("Please provide the location of the event!")
                 : setCurrentStep(currentStep + 1);
             }}
             type="contained"

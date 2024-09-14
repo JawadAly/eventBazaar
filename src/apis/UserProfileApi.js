@@ -41,3 +41,23 @@ export const getProfileInfo = async () =>{
         throw error;
     }
 }
+
+export const updateUserProfileInfo = async (updatedUserData) =>{
+    try{
+        const token = getAuthToken();
+        const resp = await axios.put('/api/v1/eventify/user/edit-profile',updatedUserData,{
+            headers:{
+                "Content-Type" : "application/json",
+                "Authorization" : `Bearer ${token}` 
+            }
+        });
+        if(resp.status >= 400 ){
+            throw new Error(resp.statusText); 
+        }
+        return resp.data;
+    }
+    catch(error){
+        console.log(`Unexpected error occured at updateUserProfileInfoApifunc. Details: ${error.message}`);
+        throw error;
+    }
+}
