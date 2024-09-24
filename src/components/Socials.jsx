@@ -83,3 +83,6 @@ export const BellIcon = (props) =>{
 export const CardIcon = (props) =>{
     return <BadgeIcon className={props.colorClass} fontSize={props.font}/>;
 }
+export const AnotherTagIcon = (props) =>{
+    return <LocalOfferOutlinedIcon className={props.incomingClass} fontSize={props.font}/>;
+}

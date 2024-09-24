@@ -27,13 +27,13 @@ const Footer = () => {
                   <NavLink to="/about">About</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/termsandconds">Terms and Conditions</NavLink>
+                  <NavLink to="/eventBazaar/termsandconds">Terms and Conditions</NavLink>
                 </li>
                 <li>
-                  <NavLink to="">Email : info@event-bazaar.pk</NavLink>
+                  <NavLink to="">Email : easyevent.digital@gmail.com</NavLink>
                 </li>
                 <li>
-                  <NavLink to="">Phone : +92 3463654223</NavLink>
+                  <NavLink to="">Phone : +92 3032162790</NavLink>
                 </li>
               </ul>
             </div>

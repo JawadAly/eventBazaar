@@ -45,7 +45,7 @@ const CategEventsView = () =>{
                         errorState ? (
                             <>
                                 <div className='errorSvgHolder pt-4'> 
-                                    <embed type="image/svg+xml" src="/eventBazaar/svgs/ic_empty_search.svg" className='emptySvg'/>
+                                    <embed type="image/svg+xml" src="/eventBazaar/svgs/ic_error_ocurred.svg" className='emptySvg'/>
                                 </div>
                                 <p className='text-center themeColor'>An Error Occured at our end please refresh page or try again later!</p>
                             </>

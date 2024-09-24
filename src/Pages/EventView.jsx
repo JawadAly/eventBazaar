@@ -133,7 +133,7 @@ const EventView = () =>{
     //         setSelected(true);
     //     }
     // }
-    const{allEvents,separateDateAndTime,isLoggedIn,navigate,loadingState,errorState} = getCentralStoreData();
+    const{allEvents,separateDateAndTime,isLoggedIn,navigate,loadingState,errorState,isJsonDesc} = getCentralStoreData();
     const {eventName} = useParams();
     useEffect(()=>{
         if(!isLoggedIn()){
@@ -143,7 +143,7 @@ const EventView = () =>{
         }
         if(allEvents.length > 0 && eventName){
             const incomingEvent = allEvents.filter((value) => eventName.trim().toLowerCase() === value.name.trim().toLowerCase());
-            console.log(incomingEvent);
+            // console.log(incomingEvent);
             setEvent(incomingEvent[0]);
         }
     },[allEvents,isLoggedIn()]);
@@ -181,6 +181,7 @@ const EventView = () =>{
         const bgMimicStyle = {
             backgroundImage: `url(${event.images[0]})`
         }
+        const eventDesc = isJsonDesc(event.description);
         return(
             <>
                 <section className='eventViewSec'>
@@ -316,7 +317,7 @@ const EventView = () =>{
                                 <h4 className='eventViewDateTime'>Description</h4>
                                 <details className='eventViewDesc mb-4'>
                                     <summary className='pb-2'>Click to View</summary>
-                                    <p>{event.description}</p>
+                                    <p>{eventDesc}</p>
                                 </details>
                             </div>
                             <MUIModelWindow>

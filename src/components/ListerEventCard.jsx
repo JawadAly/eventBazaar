@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarIcon, ClockIcon, ProfileIcon, TagIcon } from "./Socials";
+import { AnotherTagIcon,CalendarIcon, ClockIcon, ProfileIcon, TagIcon } from "./Socials";
 import { Link } from "react-router-dom";
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
@@ -34,7 +34,7 @@ const ListerEventCard = ({ name, date, time, location, cost, bgImg, eventOrg,app
               <ProfileIcon font="small" /> {eventOrg}
             </span>
             <span className="pricingArea d-flex align-items-center justify-content-center flex-wrap p-1 me-2">
-              <TagIcon font="small" className='text-white'/> {cost}
+              <AnotherTagIcon incomingClass='me-1' font='small' /> {cost}
             </span>
           </div>
           <div className="eventNameHolder">

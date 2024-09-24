@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarIcon, ClockIcon, ProfileIcon, TagIcon } from "./Socials";
+import { AnotherTagIcon, CalendarIcon, ClockIcon, ProfileIcon, TagIcon } from "./Socials";
 import { Link } from "react-router-dom";
 
 const EventCard = ({ name, dateTime, organizer, cost, bgImg }) => {
@@ -36,7 +36,7 @@ const EventCard = ({ name, dateTime, organizer, cost, bgImg }) => {
               <ProfileIcon font="small" /> {organizer}
             </span>
             <span className="pricingArea d-flex align-items-center justify-content-center flex-wrap p-1 me-2">
-              <TagIcon font="small" /> {cost}
+              <AnotherTagIcon incomingClass='me-1' font='small' /> {cost}
             </span>
           </div>
           <div className="eventNameHolder">

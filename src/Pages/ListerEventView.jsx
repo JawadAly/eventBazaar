@@ -33,7 +33,7 @@ const ListerEventView = () => {
   const [errorState, setErrorState] = useState(false);
   const [pAddedEvents, setPAddedEvents] = useState([]);
   const [modalData, setModalData] = useState({});
-  const { separateDateAndTime, isLoggedIn, navigate } = getCentralStoreData();
+  const { separateDateAndTime, isLoggedIn, navigate,isJsonDesc } = getCentralStoreData();
   const { eventName } = useParams();
   // const incomingEvent = eventsNotifications.find((value,index)=> (value.eventName === eventName) ? value : null);
 
@@ -81,7 +81,7 @@ const ListerEventView = () => {
         <section className="eventViewSec">
             <div className="container">
                 <div className='errorSvgHolder pt-4'> 
-                    <embed type="image/svg+xml" src="/eventBazaar/svgs/ic_empty_search.svg" className='emptySvg'/>
+                    <embed type="image/svg+xml" src="/eventBazaar/svgs/ic_error_ocurred.svg" className='emptySvg'/>
                     <p className='text-center themeColor'>An Error Occurred at our end, please refresh the page or try again later!</p>
                 </div>
             </div>
@@ -104,6 +104,7 @@ if(event){
     const bgMimicStyle = {
         backgroundImage: `url(${event.images[0]})`,
       };
+      const eventDesc = isJsonDesc(event.description);
       return (
         <>
           <section className="eventViewSec">
@@ -253,7 +254,7 @@ if(event){
                               <h4 className="eventViewDateTime">Description</h4>
                               <details className="eventViewDesc mb-4">
                               <summary className="pb-2">Click to View</summary>
-                              <p>{event.description}</p>
+                              <p>{eventDesc}</p>
                               </details>
                           </div>
                           <MUIModelWindow>

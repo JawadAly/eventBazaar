@@ -9,10 +9,11 @@ import { eventCategs } from "../apis/Categs";
 import { BellIcon, ProfileIcon } from "./Socials";
 import { eventsNotifications } from "../apis/Notifications";
 import { getCentralStoreData } from "./MainContext";
+import Skeleton from '@mui/material/Skeleton';
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
-  const { isLoggedIn,getLoggedInPerson, signout, eventCategs,notification,separateDateAndTime,limitWords,notificationState,mainSearch,setMainSearch } = getCentralStoreData();
+  const { isLoggedIn,getLoggedInPerson, signout, eventCategs,notification,separateDateAndTime,limitWords,notificationState,mainSearch,setMainSearch,loadingState } = getCentralStoreData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,10 +95,27 @@ const Navbar = () => {
                   <NavLink to="/eventBazaar/notifications">
                     Notifications
                   </NavLink>
-                  {(isLoggedIn() && notificationState) && (  
+                  {
+                    (isLoggedIn() && notificationState) && (  
                     <>
                         <div className="notificationsDropdown">
                             <div className="navNotificationsHolder w-100">
+                              {  
+                                loadingState && 
+                                    <div className="navNotification d-flex justify-content-around align-items-center">
+                                        <div className="notificationImgHolder">
+                                          <Skeleton animation="wave" variant="circular" width={40} height={40} />
+                                        </div>
+                                        <div className="notificationDesc w-100 ps-3 pe-0">
+                                          <p className="notificationTitle mb-0">
+                                              <Skeleton animation="wave" height={10} width="80%" style={{ marginBottom: 6 }}/>
+                                          </p>
+                                          <p className="notificationEventOrganizer mb-0">
+                                              <Skeleton animation="wave" height={10} width="80%" style={{ marginBottom: 6 }}/>
+                                          </p>
+                                        </div>
+                                    </div>
+                              }
                             {
                                 notification && notification.filter((value, index) => index < 5)
                                 .map((value, index) => {
@@ -110,14 +128,14 @@ const Navbar = () => {
                                         className="navNotification d-flex justify-content-around align-items-center"
                                     >
                                         <div className="notificationImgHolder">
-                                        <img
-                                            className="notificationImg"
-                                            src={value.images[0]}
-                                            alt={value.name}
-                                        />
-                                        <span className="notificationImgBell">
-                                            <BellIcon font="small" />
-                                        </span>
+                                          <img
+                                              className="notificationImg"
+                                              src={value.images[0]}
+                                              alt={value.name}
+                                          />
+                                          <span className="notificationImgBell">
+                                              <BellIcon font="small" />
+                                          </span>
                                         </div>
                                         <div className="notificationDesc w-100 ps-3 pe-0">
                                         <p className="notificationTitle mb-0 pt-2">

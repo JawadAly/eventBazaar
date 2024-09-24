@@ -43,15 +43,22 @@ const MainContext = ({children}) =>{
     // this function is fired in login page when login occurs
     const getAllNotificaton = async () =>{
         try{
+            setLoadingState(true);
             const bearerToken = getAuthToken();
             const resp = await fetchNotifications(bearerToken);
-            if(resp.success && resp.message === ''){
-                setNotification(resp.data.events);
-                // console.log(resp.data.events);
+            if(resp){
+                const{success,message} = resp;
+                if(success && message === ''){
+                    setNotification(resp.data.events);
+                    // console.log(resp.data.events);
+                }
             }
         }
         catch(error){
             console.log(`Error at apihandlerfunc for notification in maincontext component. Error:${error}`);
+        }
+        finally{
+            setLoadingState(false);
         }
     }
     const getAllEvents = async () =>{
@@ -184,9 +191,18 @@ const MainContext = ({children}) =>{
         }
         return wordsArray.slice(0, wordLimit).join(' ') + '...';  
         };
+    const isJsonDesc = (incomingDesc) =>{
+        try {
+            const parsedDesc = JSON.parse(incomingDesc);
+            const parsedDescText = parsedDesc.map(item => item.insert).join('');
+            return parsedDescText;
+        } catch (e) {
+            return incomingDesc;
+        }
+    }
     return(
         <>
-            <centeralStore.Provider value={{isLoggedIn,getLoggedInPerson,signout,eventCategs,getAllNotificaton,notification,separateDateAndTime,limitWords,getAllEvents,allEvents,currentLocation,setCurrentLocation,notificationState,setNotificationState,navigate,getShortName,loadingState,setLoadingState,errorState,setErrorState,mainSearch,setMainSearch}}>
+            <centeralStore.Provider value={{isLoggedIn,getLoggedInPerson,signout,eventCategs,getAllNotificaton,notification,separateDateAndTime,limitWords,getAllEvents,allEvents,currentLocation,setCurrentLocation,notificationState,setNotificationState,navigate,getShortName,loadingState,setLoadingState,errorState,setErrorState,mainSearch,setMainSearch,isJsonDesc}}>
                 {children}
             </centeralStore.Provider>
         </>

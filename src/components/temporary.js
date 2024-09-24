@@ -17,36 +17,36 @@ import { jsonCityList } from '../apis/CitiesList';
 import { getCentralStoreData } from './MainContext';
 
 const Events = () =>{
-    const{currentLocation,setCurrentLocation,allEvents,loadingState,errorState} = getCentralStoreData();
+    const{currentLocation,setCurrentLocation,setErrorState} = getCentralStoreData();
     const[allEventsEnable,allEventsEnableSet] = useState(15);
     // const[currentLocation,setCurrentLocation] = useState('karachi');
-    // const[incomingEvents,setIncomingEvents] = useState([]);
+    const[incomingEvents,setIncomingEvents] = useState([]);
     const[searchItem,setSearchItem] = useState('');
     const[citiesData,setCitiesData] = useState(jsonCityList);
-    // const[loadingState,setLoadingState] = useState(false);
-    // const fetchIncomingEvents = async () =>{
-    //     try{
-    //         setLoadingState(true);
-    //         const resp = await axios.get(`/api/v1/eventify/event/list?filter=${currentLocation}`);
-    //         if(resp.data.success){
-    //             setIncomingEvents(resp.data.data.events);
-    //             // console.log(resp.data.data.events);
-    //         }
-    //         // console.log(resp.data);
-    //         // setLoadingState(false);
-    //     }
-    //     catch(error){
-    //         console.log(`Error at apihandlerfunc in events component. Error:${error}`);
-    //         setErrorState(true);
-    //     }
-    //     finally{
-    //         //turning of the loading state
-    //         setLoadingState(false);
-    //     }
-    // }
-    // useEffect(()=>{
-    //     fetchIncomingEvents();
-    // },[currentLocation]);
+    const[loadingState,setLoadingState] = useState(false);
+    const fetchIncomingEvents = async () =>{
+        try{
+            setLoadingState(true);
+            const resp = await axios.get(`/api/v1/eventify/event/list?filter=${currentLocation}`);
+            if(resp.data.success){
+                setIncomingEvents(resp.data.data.events);
+                // console.log(resp.data.data.events);
+            }
+            // console.log(resp.data);
+            // setLoadingState(false);
+        }
+        catch(error){
+            console.log(`Error at apihandlerfunc in events component. Error:${error}`);
+            setErrorState(true);
+        }
+        finally{
+            //turning of the loading state
+            setLoadingState(false);
+        }
+    }
+    useEffect(()=>{
+        fetchIncomingEvents();
+    },[currentLocation]);
     const filteredData = citiesData.filter(item =>
         item.name.toLowerCase().includes(searchItem.toLowerCase())
     );
@@ -147,40 +147,29 @@ const Events = () =>{
                     </div>
                     
                     {
-                        errorState ? (
+                        loadingState ? (<div className='text-center w-100 p-4'>
+                                <MUIProgress/>
+                                </div>):
+                        (incomingEvents.length === 0 ? (
                             <div className="eventViewSec pb-5 mb-3">
                                 <div className='errorSvgHolder pt-4'> 
-                                    <embed type="image/svg+xml" src="/eventBazaar/svgs/ic_error_ocurred.svg" className='emptySvg'/>
+                                    <embed type="image/svg+xml" src="/eventBazaar/svgs/ic_empty_search.svg" className='emptySvg'/>
                                     <p className='text-center themeColor'>No events to show!</p>
                                 </div>
-                            </div> 
+                            </div>                    
                         ) : (
-
-                            loadingState ? (<div className='text-center w-100 p-4'>
-                                    <MUIProgress/>
-                                    </div>):
-                            (allEvents.length === 0 ? (
-                                <div className="eventViewSec pb-5 mb-3">
-                                    <div className='errorSvgHolder pt-4'> 
-                                        <embed type="image/svg+xml" src="/eventBazaar/svgs/ic_empty_search.svg" className='emptySvg'/>
-                                        <p className='text-center themeColor'>No events to show!</p>
-                                    </div>
-                                </div>                    
-                            ) : (
-                                <div className='cardsHolder p-3 mb-5'>
-                                    {allEvents.filter((value,index)=> index < allEventsEnable).map((value,index)=>{
-                                        return(
-                                            <EventCard key={index} id={value.id} name={value.name} dateTime={value.date_time} organizer={value.contact.organization} cost={value.price_type} bgImg={value.images[0]}/>
-                                        );
-                                    })}   
-                                </div>
-                            )
-                            )
+                            <div className='cardsHolder p-3 mb-5'>
+                                {incomingEvents.filter((value,index)=> index < allEventsEnable).map((value,index)=>{
+                                    return(
+                                        <EventCard key={index} id={value.id} name={value.name} dateTime={value.date_time} organizer={value.contact.organization} cost={value.price_type} bgImg={value.images[0]}/>
+                                    );
+                                })}   
+                            </div>
                         )
-                        
+                        )
                     }
                     <div className='eventPagesData'>
-                        <p className='text-center'>Showing <span className='themeColor'>{allEventsEnable}</span> out <span className='themeColor'>{allEvents.length}</span> Events  {allEventsEnable != 15 ? <NavLink onClick={()=> allEventsEnableSet(12)} style={{color:'#bc2649'}}>See Less</NavLink> : <NavLink onClick={()=> allEventsEnableSet(allEvents.length)} style={{color:'#bc2649'}}>See All</NavLink>}</p>
+                        <p className='text-center'>Showing <span className='themeColor'>{allEventsEnable}</span> out <span className='themeColor'>{incomingEvents.length}</span> Events  {allEventsEnable != 15 ? <NavLink onClick={()=> allEventsEnableSet(12)} style={{color:'#bc2649'}}>See Less</NavLink> : <NavLink onClick={()=> allEventsEnableSet(incomingEvents.length)} style={{color:'#bc2649'}}>See All</NavLink>}</p>
                     </div>
                     <ModalWindow>
                     <button

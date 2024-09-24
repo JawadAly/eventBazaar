@@ -17,8 +17,10 @@ const EventsContext = ({children}) =>{
         eventStartsFrom:'',
         eventGoesUpto:'',
         passDetails:[],
-        eventBanner:'',
-        eventBannerUrl:'',
+        // eventBanner:'',
+        eventImages:[],
+        // eventBannerUrl:'',
+        eventImagesUrls:[],
         eventTitle:'',
         eventDesc:'',
         eventCategory:'',
@@ -31,14 +33,24 @@ const EventsContext = ({children}) =>{
     const senseEventDataChange = (event) =>{
         const{name,value,files} = event.target;
         setEventData((prevVal)=>{
-            if(name === 'eventBanner'){
-                const incomingFile = files[0];
-                const imageUrl = URL.createObjectURL(incomingFile);
+            if(name === 'eventImages'){
+                const incomingFiles = Array.from(files);
+                const incomingImagesUrls = incomingFiles.map(file => URL.createObjectURL(file));
                 return{
                     ...prevVal,
-                    [name] : files[0],
-                    eventBannerUrl : imageUrl
+                    // [name] : incomingFiles,
+                    // eventImagesUrls : incomingImagesUrls
+
+                    [name]: [...(prevVal[name] || []), ...incomingFiles],
+                    eventImagesUrls: [...(prevVal.eventImagesUrls || []), ...incomingImagesUrls] 
                 };
+                // const incomingFile = files[0];
+                // const imageUrl = URL.createObjectURL(incomingFile);
+                // return{
+                //     ...prevVal,
+                //     [name] : files[0],
+                //     eventBannerUrl : imageUrl
+                // };
             }
             else{
                 return{
@@ -49,9 +61,18 @@ const EventsContext = ({children}) =>{
             
         });
     }
+    const removeEventImage = (eventImageId) =>{
+        setEventData((prevVal)=>{
+            return{
+                ...prevVal,
+                eventImages : prevVal.eventImages.filter((val,index) => index !== eventImageId),
+                eventImagesUrls : prevVal.eventImagesUrls.filter((val,index) => index !== eventImageId)
+            };
+        });
+    }
     return(
         <>
-            <stepContext.Provider value={{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange,toast,Zoom}}>
+            <stepContext.Provider value={{currentStep,setCurrentStep,eventData,setEventData,senseEventDataChange,removeEventImage,toast,Zoom}}>
                 {children}
             </stepContext.Provider>
         </>
