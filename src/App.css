@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 *{
   margin: 0;
   padding: 0;
@@ -326,11 +327,28 @@ padding-left: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
   position: relative;
+  text-align: center;
+  opacity: 0.7;
 }
 .categName{
+  font-weight: bolder;  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.categCount{
+  color: #F35D74;
+  font-size: 90px;
+  position: absolute;
+  left: -27px;  
+  z-index: -1;
+  font-family: "Dancing Script", cursive;
+}
+/* .categName{
   position: absolute;
   top: 110%;
-}
+} */
  
 /* featured events section css */
 .featuredCard{

@@ -8,14 +8,14 @@ import CompleteLoader from "./CompleteLoader";
 
 const Step7 = () => {
   const { currentStep, setCurrentStep, eventData , setEventData, senseEventDataChange, toast ,Zoom } = useContext(stepContext);
-  const{loadingState,setLoadingState} = getCentralStoreData();
+  const{loadingState,setLoadingState,navigate} = getCentralStoreData();
   const[finalPassesAndImages,setFinalPassesAndImages] = useState({
     eventImagesUrls:[],
     passDetails:[]
   });
 
   useEffect(()=>{
-    if(finalPassesAndImages.eventImagesUrls.length > 0 && finalPassesAndImages.passDetails.length > 0){
+    if(finalPassesAndImages.eventImagesUrls.length > 0 || finalPassesAndImages.passDetails.length > 0){
       furtherEventAddition(eventData,finalPassesAndImages);
     }
   },[finalPassesAndImages]);
@@ -102,7 +102,8 @@ const Step7 = () => {
         const{success,message} = resp;
         if(success){
           toast.success('Event Added Successfully!');
-          console.log(resp);
+          navigate('/eventBazaar/account');
+          // console.log(resp);
         }
         else{
           toast.error(message);

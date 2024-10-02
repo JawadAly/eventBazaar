@@ -17,7 +17,7 @@ import { jsonCityList } from '../apis/CitiesList';
 import { getCentralStoreData } from './MainContext';
 
 const Events = () =>{
-    const{currentLocation,setCurrentLocation,allEvents,loadingState,errorState} = getCentralStoreData();
+    const{currentLocation,setCurrentLocation,allEvents,loadingState,setLoadingState,errorState} = getCentralStoreData();
     const[allEventsEnable,allEventsEnableSet] = useState(15);
     // const[currentLocation,setCurrentLocation] = useState('karachi');
     // const[incomingEvents,setIncomingEvents] = useState([]);
@@ -51,47 +51,47 @@ const Events = () =>{
         item.name.toLowerCase().includes(searchItem.toLowerCase())
     );
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        responsive: [
-            {
-                breakpoint: 1400,
-                settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 3,
-                  infinite: true,
-                }
-              },
-            {
-                breakpoint: 1200,
-                settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                infinite: true,
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1
+    // const settings = {
+    //     dots: true,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 3,
+    //     slidesToScroll: 3,
+    //     responsive: [
+    //         {
+    //             breakpoint: 1400,
+    //             settings: {
+    //               slidesToShow: 3,
+    //               slidesToScroll: 3,
+    //               infinite: true,
+    //             }
+    //           },
+    //         {
+    //             breakpoint: 1200,
+    //             settings: {
+    //             slidesToShow: 3,
+    //             slidesToScroll: 3,
+    //             infinite: true,
+    //             }
+    //         },
+    //         {
+    //             breakpoint: 768,
+    //             settings: {
+    //             slidesToShow: 2,
+    //             slidesToScroll: 2,
+    //             infinite: true,
+    //             }
+    //         },
+    //         {
+    //             breakpoint: 480,
+    //             settings: {
+    //             slidesToShow: 1,
+    //             slidesToScroll: 1
                 
-                }
-            }
-    ]
-      };
+    //             }
+    //         }
+    // ]
+    //   };
     return(
         <>
             <section className='eventsSection pb-5 mt-4'>
@@ -99,8 +99,9 @@ const Events = () =>{
                 {/* categories section */}
                 {/* <Categories/> */}
                 {/* categories section */}
+
                 {/* featured events section */}
-                    <h3 className='eventsSecHeading ps-3 mb-3' style={{color:'#bc2649'}}>Featured</h3>
+                    {/* <h3 className='eventsSecHeading ps-3 mb-3' style={{color:'#bc2649'}}>Featured</h3>
                     <div className='featuredCardsHolder w-100 pb-5'>
                     
                     <Slider {...settings}>
@@ -131,10 +132,10 @@ const Events = () =>{
                             
                     </Slider>
                         
-                    </div>
+                    </div> */}
                     {/* featured events section */}
 
-                    <div className='d-flex align-items-center justify-content-between mb-2 pe-3 mt-4'>
+                    <div className='d-flex align-items-center justify-content-between mb-2 pe-3'>
                         <h3 className='eventsSecHeading ps-3 '>Near You</h3>
                         <div 
                         className='currentLocationHolder'

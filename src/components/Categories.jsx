@@ -60,14 +60,15 @@ const Categories = () => {
           {eventCategs.map((value, index) => {
             return (
               <>
-                <Link to={`/eventBazaar/categories/${value.name}`}>
-                  <div className="categFlexer d-flex align-items-center justify-content-center pb-5">
+                <Link to={`/eventBazaar/categories/${value.name}`} style={{textDecoration:'none'}}>
+                  <div className="categFlexer d-flex align-items-center justify-content-center pb-3">
                     <div
                       key={index}
-                      className="myCateg d-flex align-items-center justify-content-center"
+                      className="myCateg"
                     >
                       {/* <CategIcons categicon={value.categIconName} /> */}
                       <p className="categName text-dark">{value.name}</p>
+                      <h1 className="categCount">{index+1}</h1>
                     </div>
                   </div>
                 </Link>

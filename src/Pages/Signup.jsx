@@ -14,6 +14,7 @@ import { sendVerification, signUp,verifyUserEmailOrPass } from '../apis/AuthServ
 import { toast,Zoom } from 'react-toastify';
 import { getCentralStoreData } from '../components/MainContext';
 import MUIModelWindow from '../components/MUIModelWindow';
+import PhoneInput from 'react-phone-input-2';
 
 const Signup = () =>{
     const[registerData,setRegisterData] = useState({
@@ -21,7 +22,7 @@ const Signup = () =>{
         last_name:'',
         email:'',
         age:'',
-        country_code:"+92",
+        country_code:'',
         phone:'',
         password:'',
         confirm_password:'',
@@ -33,20 +34,31 @@ const Signup = () =>{
     const[passwordMatchState,setPasswordMatchState] = useState('');
     const[continueVerif,setContinueVerif] = useState(false);
     const{navigate,getAllNotificaton,getAllEvents} = getCentralStoreData();
-    const senseChange = (event) =>{
-        const name = event.target.name;
-        // working for both checkbox and textfields
-        const value = (event.target.type === 'checkbox') ? event.target.checked : event.target.value;
-        setRegisterData((prevVal)=>{
-            return {
+    const senseChange = (event,countryData) =>{
+        if(event && event.target){
+            const name = event.target.name;
+            // working for both checkbox and textfields
+            const value = (event.target.type === 'checkbox') ? event.target.checked : event.target.value;
+            setRegisterData((prevVal)=>{
+                return {
+                    ...prevVal,
+                    [name] : value
+                };
+            });
+            if (name === 'password' || name === 'confirm_password') {
+                const newPassword = name === 'password' ? value : registerData.password;
+                const newconfirm_password = name === 'confirm_password' ? value : registerData.confirm_password;
+                setPasswordMatchState(newPassword !== newconfirm_password);
+            }
+        } 
+        else{
+            const phone = event.replace(countryData.dialCode, ''); 
+            const country_code = countryData.dialCode; 
+            setRegisterData((prevVal) => ({
                 ...prevVal,
-                [name] : value
-            };
-        });
-        if (name === 'password' || name === 'confirm_password') {
-            const newPassword = name === 'password' ? value : registerData.password;
-            const newconfirm_password = name === 'confirm_password' ? value : registerData.confirm_password;
-            setPasswordMatchState(newPassword !== newconfirm_password);
+                phone: phone,
+                country_code: `+${country_code}`
+            }));
         }
     }
     
@@ -106,7 +118,7 @@ const Signup = () =>{
                         last_name:'',
                         email:'',
                         age:'',
-                        country_code:"+92",
+                        country_code:'',
                         phone:'',
                         password:'',
                         confirm_password:'',
@@ -127,11 +139,12 @@ const Signup = () =>{
     const submitRegisterData = (e) =>{
         e.preventDefault();
         if(registerData.first_name === '' ||
-           registerData.last_name === ''  ||
-           registerData.age === ''  ||
-           registerData.phone === ''  ||
-           registerData.email === ''  ||
-           registerData.password === ''  ||
+           registerData.last_name === '' ||
+           registerData.age === '' ||
+           registerData.phone === '' ||
+           registerData.country_code === '' ||
+           registerData.email === '' ||
+           registerData.password === '' ||
            registerData.confirm_password === ''
         ){
             toast.error('Please fill out the required fields');
@@ -262,14 +275,20 @@ const Signup = () =>{
                                         startAdornmentIcon={CalendarTodayIcon}
                                         />
                                     </div>
-                                    <div className='inputHolder pe-3'>
-                                        <MUITextField 
+                                    <div className='inputHolder'>
+                                        {/* <MUITextField 
                                         val={registerData.phone}
                                         changeEvent={senseChange}
                                         name='phone'
                                         type='tel'
                                         label='Phone'
                                         startAdornmentIcon={LocalPhoneIcon}
+                                        /> */}
+                                        <PhoneInput
+                                        containerStyle={{padding:'8px'}}
+                                        inputStyle={{width:'100%',height:'56px'}}
+                                        country={'pk'}
+                                        onChange={senseChange}
                                         />
                                     </div>
                                     <div className='inputHolder pe-3'>
